@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tokora — Style Guide & Animation Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <script>try{var t=localStorage.getItem('tokora-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+  <style>
+    /* ---- gaya khusus halaman style guide (tidak dipakai landing page) ---- */
+    .sg-layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: var(--sp-8); align-items: start; }
+    .sg-side { position: sticky; top: 100px; display: grid; gap: 2px; font-size: var(--fs-body-sm); }
+    .sg-side a { padding: 0.45rem 0.8rem; border-radius: var(--r-sm); color: var(--text-2); transition: background-color var(--dur-fast), color var(--dur-fast), transform var(--dur-fast) var(--ease-out); }
+    .sg-side a:hover, .sg-side a.is-active { background: var(--surface-hover); color: var(--heading); transform: translateX(4px); }
+    .sg-section { padding-block: var(--sp-8); border-bottom: 1px solid var(--border); scroll-margin-top: 100px; }
+    .sg-section:last-child { border-bottom: 0; }
+    .sg-h { display: flex; align-items: baseline; gap: var(--sp-4); margin-bottom: var(--sp-6); }
+    .sg-h .num { font-family: var(--font-display); font-size: var(--fs-body-sm); color: var(--accent); }
+    .sg-note { padding: var(--sp-4) var(--sp-5); border-radius: var(--r-md); background: var(--surface); border-left: 3px solid var(--accent); color: var(--text-2); font-size: var(--fs-body-sm); }
+    .sg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--sp-4); }
+    .swatch { border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--border); cursor: pointer; transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast); }
+    .swatch:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .swatch__color { height: 72px; }
+    .swatch__meta { padding: var(--sp-3); font-size: var(--fs-caption); display: grid; gap: 2px; background: var(--bg-2); }
+    .swatch__meta b { font-family: ui-monospace, Consolas, monospace; font-weight: 500; color: var(--heading); }
+    .swatch__meta span { color: var(--text-muted); }
+    .type-row { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: var(--sp-5); align-items: baseline; padding: var(--sp-4) 0; border-bottom: 1px dashed var(--border); }
+    .type-row small { color: var(--text-muted); font-size: var(--fs-caption); font-family: ui-monospace, Consolas, monospace; }
+    .sp-row { display: flex; align-items: end; gap: var(--sp-3); flex-wrap: wrap; }
+    .sp-box { background: var(--accent); border-radius: 3px; }
+    .sp-box + small { display: block; }
+    .demo { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--sp-4); }
+    .demo__item { display: grid; gap: var(--sp-3); }
+    .demo__box { height: 110px; border-radius: var(--r-md); background: var(--card-active); display: grid; place-items: center; color: #fff; font-family: var(--font-display); font-weight: 600; }
+    .demo__code { font-family: ui-monospace, Consolas, monospace; font-size: var(--fs-caption); color: var(--text-2); word-break: break-all; }
+    .code { padding: var(--sp-4) var(--sp-5); border-radius: var(--r-md); background: var(--c-teal-950); color: var(--c-mist-100); font-family: ui-monospace, Consolas, monospace; font-size: var(--fs-body-sm); line-height: 1.6; overflow-x: auto; white-space: pre; }
+    .code .c { color: var(--c-mist-500); } .code .a { color: var(--c-yellow-300); } .code .t { color: var(--c-sky-300); }
+    table.ref { width: 100%; border-collapse: collapse; font-size: var(--fs-body-sm); }
+    table.ref th, table.ref td { text-align: left; padding: 0.7rem 0.8rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    table.ref th { color: var(--text-muted); font-weight: 500; font-size: var(--fs-caption); letter-spacing: var(--ls-caps); text-transform: uppercase; }
+    table.ref code { font-family: ui-monospace, Consolas, monospace; color: var(--heading-accent); font-size: 0.85em; }
+    .ref-wrap { overflow-x: auto; }
+    .toast { position: fixed; left: 50%; bottom: 2rem; transform: translate(-50%, 20px); padding: 0.7rem 1.2rem; border-radius: var(--r-pill); background: var(--accent); color: var(--c-teal-900); font-size: var(--fs-body-sm); font-weight: 500; opacity: 0; pointer-events: none; transition: opacity var(--dur-fast), transform var(--dur-fast) var(--ease-out); z-index: 999; }
+    .toast.is-show { opacity: 1; transform: translate(-50%, 0); }
+    .shade { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--sp-3); }
+    .shade div { padding: var(--sp-3); border-radius: var(--r-sm); font-size: var(--fs-caption); font-family: ui-monospace, Consolas, monospace; border: 1px solid var(--border); }
+    .layer-list { display: grid; gap: var(--sp-3); counter-reset: layer; }
+    .layer-list li { display: grid; grid-template-columns: 44px 1fr; gap: var(--sp-4); padding: var(--sp-4); border-radius: var(--r-md); background: var(--surface); align-items: start; }
+    .layer-list li::before { counter-increment: layer; content: counter(layer); width: 36px; height: 36px; border-radius: 50%; background: var(--icon-bg); display: grid; place-items: center; font-family: var(--font-display); font-weight: 600; color: var(--accent); }
+    .layer-list b { color: var(--heading); } .layer-list small { color: var(--text-muted); display: block; margin-top: 2px; }
+    .dd { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+    .dd div { padding: var(--sp-5); border-radius: var(--r-md); border: 1px solid var(--border); }
+    .dd h4 { margin-bottom: var(--sp-3); } .dd ul { display: grid; gap: var(--sp-2); font-size: var(--fs-body-sm); color: var(--text-2); }
+    .dd li::before { content: "• "; color: var(--accent); }
+    .dd .no h4 { color: var(--c-orange-400); } .dd .no li::before { color: var(--c-orange-400); }
+    @media (max-width: 900px) { .sg-layout { grid-template-columns: 1fr; } .sg-side { position: static; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); } .type-row { grid-template-columns: 1fr; } .dd { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="progress" data-progress aria-hidden="true"></div>
+
+  <header class="nav is-scrolled" data-nav>
+    <div class="container nav__inner">
+      <a href="index.html" class="brand"><svg class="brand__mark" viewBox="0 0 40 40" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="20" r="18"/><path d="M13 16h14l-1.6 12.5a1.5 1.5 0 0 1-1.5 1.3h-7.8a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M16.5 16v-1.5a3.5 3.5 0 0 1 7 0V16"/></svg><span>TOKORA · STYLE GUIDE</span></a>
+      <nav class="nav__links" aria-label="Guide"><a class="nav__link" href="index.html">← Landing page</a><a class="nav__link" href="#anim">Animasi</a><a class="nav__link" href="#ref">Referensi</a><a class="nav__link" href="login.html">Login</a></nav>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top: 8rem">
+    <div class="container">
+      <span class="eyebrow" data-anim="fade-right">Design system & animation kit</span>
+      <h1 class="display-lg" data-split="words">Tokora <span class="accent">Style Guide</span></h1>
+      <p class="lead measure mt-6" data-anim="fade-up">Semua warna, tipografi, komponen, dan preset animasi yang dipakai landing page. Nilai di halaman ini dibaca langsung dari <code class="tag">css/tokens.css</code>, jadi selalu sinkron: ubah token → halaman ini ikut berubah. Klik swatch untuk menyalin nama variabel.</p>
+
+      <div class="sg-layout mt-8">
+        <aside class="sg-side" aria-label="Daftar isi">
+          <a href="#start">0 · Quick start</a>
+          <a href="#color">1 · Warna</a>
+          <a href="#type">2 · Tipografi</a>
+          <a href="#space">3 · Spasi, radius, bayangan</a>
+          <a href="#btn">4 · Tombol</a>
+          <a href="#comp">5 · Komponen</a>
+          <a href="#anim">6 · Preset animasi scroll</a>
+          <a href="#idle">7 · Animasi idle (CSS)</a>
+          <a href="#hero">8 · Lapisan ilustrasi hero</a>
+          <a href="#ref">9 · Referensi atribut</a>
+          <a href="#motion">10 · Prinsip motion</a>
+        </aside>
+
+        <div>
+          <!-- 0 QUICK START -->
+          <section class="sg-section" id="start" style="padding-top:0">
+            <div class="sg-h"><span class="num">00</span><h2 class="display-md">Quick start: adaptasi ke project lain</h2></div>
+            <div class="stack" data-stagger="0.1" data-anim="fade-up">
+              <div class="sg-note"><b>1.</b> Salin folder <code class="tag">css/</code> dan <code class="tag">js/</code>. Muat CSS berurutan: tokens → base → components → sections → animations. Muat GSAP + ScrollTrigger dari CDN, lalu <code class="tag">js/animations.js</code>.</div>
+              <div class="sg-note"><b>2.</b> Ganti brand hanya di <code class="tag">css/tokens.css</code> (warna, font, radius, timing). Tidak ada nilai hard-coded di komponen.</div>
+              <div class="sg-note"><b>3.</b> Tambahkan atribut <code class="tag">data-anim="fade-up"</code> (dan teman-temannya) ke elemen mana pun, lalu panggil <code class="tag">Anim.init()</code>. Tidak perlu menulis JS animasi.</div>
+              <div class="sg-note"><b>4.</b> Hapus/ganti <code class="tag">css/sections.css</code> dan bagian hero di <code class="tag">index.html</code> sesuai kebutuhan. Engine & komponen tetap jalan.</div>
+            </div>
+            <div class="code mt-6" data-anim="fade-up"><span class="c">&lt;!-- urutan minimal di &lt;head&gt; dan akhir &lt;body&gt; --&gt;</span>
+<span class="t">&lt;link</span> rel="stylesheet" href="css/tokens.css"<span class="t">&gt;</span>
+<span class="t">&lt;link</span> rel="stylesheet" href="css/base.css"<span class="t">&gt;</span>
+<span class="t">&lt;link</span> rel="stylesheet" href="css/components.css"<span class="t">&gt;</span>
+<span class="t">&lt;link</span> rel="stylesheet" href="css/animations.css"<span class="t">&gt;</span>
+…
+<span class="t">&lt;script</span> src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"<span class="t">&gt;&lt;/script&gt;</span>
+<span class="t">&lt;script</span> src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"<span class="t">&gt;&lt;/script&gt;</span>
+<span class="t">&lt;script</span> src="js/animations.js"<span class="t">&gt;&lt;/script&gt;</span>
+<span class="t">&lt;script&gt;</span>Anim.init();<span class="t">&lt;/script&gt;</span></div>
+          </section>
+
+          <!-- 1 COLOR -->
+          <section class="sg-section" id="color">
+            <div class="sg-h"><span class="num">01</span><h2 class="display-md">Warna</h2></div>
+            <p class="text-2 small" style="margin-bottom:var(--sp-5)">Brand color = palet mentah. Semantic color = peran (bg, text, primary…). Komponen hanya memakai semantic token, sehingga ganti tema cukup memetakan ulang. Coba tombol tema di kiri bawah.</p>
+            <h3 class="display-sm" style="margin-bottom:var(--sp-4)">Brand colors</h3>
+            <div class="sg-grid" data-swatches="brand" data-stagger="0.04" data-anim="zoom-in"></div>
+            <h3 class="display-sm" style="margin:var(--sp-7) 0 var(--sp-4)">Semantic tokens (mengikuti tema aktif)</h3>
+            <div class="sg-grid" data-swatches="semantic" data-stagger="0.04" data-anim="zoom-in"></div>
+          </section>
+
+          <!-- 2 TYPE -->
+          <section class="sg-section" id="type">
+            <div class="sg-h"><span class="num">02</span><h2 class="display-md">Tipografi</h2></div>
+            <p class="text-2 small">Display: <b class="accent">Outfit</b> (600) untuk judul · Body: <b class="accent">Rubik</b> (400/500) untuk teks. Ukuran memakai <code class="tag">clamp()</code> sehingga responsif tanpa media query.</p>
+            <div class="mt-6" data-stagger="0.08" data-anim="fade-up">
+              <div class="type-row"><small>.display-xl<br>--fs-display-xl</small><div class="display-xl">Start energy revolution</div></div>
+              <div class="type-row"><small>.display-lg<br>--fs-display-lg</small><div class="display-lg">What is Tokora?</div></div>
+              <div class="type-row"><small>.display-md<br>--fs-display-md</small><div class="display-md">Platform Keypoints</div></div>
+              <div class="type-row"><small>.display-sm<br>--fs-display-sm</small><h3 class="display-sm">Energy Decentralization</h3></div>
+              <div class="type-row"><small>.lead<br>--fs-body-lg</small><p class="lead">Sustainable technologies have never been so affordable.</p></div>
+              <div class="type-row"><small>body<br>--fs-body</small><p>Tokora is a revolutionary platform of ecological energy production and management based on a decentralized system of power exchange.</p></div>
+              <div class="type-row"><small>.small / .muted<br>--fs-body-sm</small><p class="small muted">Independent and digitized smart marketplace</p></div>
+              <div class="type-row"><small>.eyebrow<br>--fs-caption</small><span class="eyebrow">About the platform</span></div>
+              <div class="type-row"><small>.text-gradient</small><div class="display-md text-gradient">Animated gradient text</div></div>
+            </div>
+          </section>
+
+          <!-- 3 SPACING -->
+          <section class="sg-section" id="space">
+            <div class="sg-h"><span class="num">03</span><h2 class="display-md">Spasi, radius & bayangan</h2></div>
+            <h3 class="display-sm" style="margin-bottom:var(--sp-4)">Spacing (8pt scale)</h3>
+            <div class="sp-row" data-stagger="0.05" data-anim="grow-up">
+              <div><div class="sp-box" style="width:var(--sp-1);height:var(--sp-1)"></div><small class="caption muted">--sp-1</small></div>
+              <div><div class="sp-box" style="width:var(--sp-2);height:var(--sp-2)"></div><small class="caption muted">--sp-2</small></div>
+              <div><div class="sp-box" style="width:var(--sp-3);height:var(--sp-3)"></div><small class="caption muted">--sp-3</small></div>
+              <div><div class="sp-box" style="width:var(--sp-4);height:var(--sp-4)"></div><small class="caption muted">--sp-4</small></div>
+              <div><div class="sp-box" style="width:var(--sp-5);height:var(--sp-5)"></div><small class="caption muted">--sp-5</small></div>
+              <div><div class="sp-box" style="width:var(--sp-6);height:var(--sp-6)"></div><small class="caption muted">--sp-6</small></div>
+              <div><div class="sp-box" style="width:var(--sp-7);height:var(--sp-7)"></div><small class="caption muted">--sp-7</small></div>
+              <div><div class="sp-box" style="width:var(--sp-8);height:var(--sp-8)"></div><small class="caption muted">--sp-8</small></div>
+            </div>
+            <h3 class="display-sm" style="margin:var(--sp-7) 0 var(--sp-4)">Radius</h3>
+            <div class="shade" data-stagger="0.05" data-anim="fade-up">
+              <div style="border-radius:var(--r-sm);background:var(--surface-hover)">--r-sm · 8px</div>
+              <div style="border-radius:var(--r-md);background:var(--surface-hover)">--r-md · 14px</div>
+              <div style="border-radius:var(--r-lg);background:var(--surface-hover)">--r-lg · 22px</div>
+              <div style="border-radius:var(--r-xl);background:var(--surface-hover)">--r-xl · 32px</div>
+              <div style="border-radius:var(--r-pill);background:var(--surface-hover)">--r-pill</div>
+            </div>
+            <h3 class="display-sm" style="margin:var(--sp-7) 0 var(--sp-4)">Shadows</h3>
+            <div class="shade" data-stagger="0.05" data-anim="fade-up">
+              <div style="box-shadow:var(--shadow-sm);background:var(--bg-2);padding:var(--sp-5)">--shadow-sm</div>
+              <div style="box-shadow:var(--shadow-md);background:var(--bg-2);padding:var(--sp-5)">--shadow-md</div>
+              <div style="box-shadow:var(--shadow-lg);background:var(--bg-2);padding:var(--sp-5)">--shadow-lg</div>
+              <div style="box-shadow:var(--shadow-glow);background:var(--bg-2);padding:var(--sp-5)">--shadow-glow</div>
+            </div>
+          </section>
+
+          <!-- 4 BUTTONS -->
+          <section class="sg-section" id="btn">
+            <div class="sg-h"><span class="num">04</span><h2 class="display-md">Tombol</h2></div>
+            <p class="text-2 small" style="margin-bottom:var(--sp-5)">Hover: isian mengembang dari kiri + naik 2px. Tambah <code class="tag">data-magnetic</code> agar tombol "menempel" ke kursor.</p>
+            <div class="row row--wrap" data-stagger="0.06" data-anim="pop">
+              <a class="btn btn--primary" href="#" data-magnetic>Contact us</a>
+              <a class="btn btn--accent" href="#" data-magnetic>Choose plan</a>
+              <a class="btn btn--outline" href="#">Watch video <svg class="btn__icon btn__icon--play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
+              <a class="btn btn--ghost" href="#">Learn more <svg class="btn__icon btn__icon--arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a class="btn btn--white" href="#">App Store</a>
+              <button class="btn btn--primary btn--sm">Small</button>
+              <button class="btn btn--primary btn--lg">Large</button>
+              <button class="btn btn--primary" disabled>Disabled</button>
+              <button class="btn btn--primary btn--icon" aria-label="Play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+            </div>
+            <div class="row row--wrap mt-6" data-stagger="0.06" data-anim="fade-up">
+              <a class="link-arrow" href="#">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a class="link-draw" href="#">link-draw (underline saat hover)</a>
+              <div class="arrows"><button class="arrows__btn arrows__btn--prev" aria-label="Prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><button class="arrows__btn" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+              <div class="control" style="position:static"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg></div>
+            </div>
+          </section>
+
+          <!-- 5 COMPONENTS -->
+          <section class="sg-section" id="comp">
+            <div class="sg-h"><span class="num">05</span><h2 class="display-md">Komponen</h2></div>
+            <h3 class="display-sm" style="margin-bottom:var(--sp-4)">Badge, tag, icon-circle, avatar</h3>
+            <div class="row row--wrap" data-stagger="0.05" data-anim="zoom-in">
+              <span class="badge">Free</span><span class="badge badge--accent">Popular</span><span class="badge badge--success">−20%</span><span class="badge"><span class="badge__dot"></span> Live</span>
+              <code class="tag">data-anim="fade-up"</code>
+              <div class="icon-circle icon-circle--sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 3L5 13h6l-1 8 8-10h-6z"/></svg></div>
+              <div class="icon-circle" style="--size:80px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg></div>
+              <span class="avatar">AR</span>
+            </div>
+
+            <h3 class="display-sm" style="margin:var(--sp-7) 0 var(--sp-4)">Feature card (klik untuk aktif)</h3>
+            <div class="grid grid--3" data-stagger="0.1" data-anim="fade-up" data-sg-features>
+              <article class="feature-card is-active" data-feature tabindex="0"><div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/><path d="M12 9.4V4M14.4 13.2l4.4 3M9.6 13.2l-4.4 3"/><circle cx="12" cy="3" r="1.6"/><circle cx="19.5" cy="17" r="1.6"/><circle cx="4.5" cy="17" r="1.6"/></svg></div><h3 class="feature-card__title">Energy<br>Decentralization</h3><div class="feature-card__body"><div><p class="feature-card__text">Isi kartu muncul saat aktif (grid-template-rows 0fr → 1fr).</p><a href="#" class="link-arrow">Learn more →</a></div></div></article>
+              <article class="feature-card" data-feature tabindex="0"><div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M9 18h6M10 21h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg></div><h3 class="feature-card__title">Eco-Friendly<br>Sustainability</h3><div class="feature-card__body"><div><p class="feature-card__text">Kartu kedua.</p><a href="#" class="link-arrow">Learn more →</a></div></div></article>
+              <article class="feature-card" data-feature tabindex="0"><div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M20 12a8 8 0 0 1-13.6 5.7M4 12A8 8 0 0 1 17.6 6.3"/><path d="M17.6 3v3.3h-3.3M6.4 21v-3.3h3.3"/></svg></div><h3 class="feature-card__title">Power<br>Exchange</h3><div class="feature-card__body"><div><p class="feature-card__text">Kartu ketiga.</p><a href="#" class="link-arrow">Learn more →</a></div></div></article>
+            </div>
+
+            <h3 class="display-sm" style="margin:var(--sp-7) 0 var(--sp-4)">Card, plan, quote, stat</h3>
+            <div class="grid grid--3" data-stagger="0.1" data-anim="fade-up">
+              <div class="card" data-tilt="8"><h4 class="display-sm">.card + data-tilt</h4><p class="small text-2" style="margin-top:.5rem">Kartu generik. Hover → naik & bayangan. Gerakkan kursor untuk tilt 3D.</p></div>
+              <article class="plan plan--featured"><div class="plan__head"><div><h3 class="plan__name">Neighborhood</h3><p class="plan__desc">Up to 200 households</p></div><span class="badge badge--accent">Popular</span></div><div class="plan__price"><b>$29</b><span>/ month</span></div><a class="btn btn--accent" href="#">Choose</a></article>
+              <div class="stack">
+                <article class="quote" style="width:auto"><div class="quote__stars">★★★★★</div><p class="quote__text">"The app just quietly does the trading."</p><div class="quote__who"><span class="avatar">AR</span><div>Ana Ruiz<small>Riverside, Portugal</small></div></div></article>
+                <div class="stat is-inview"><div class="stat__value" data-counter="12400" data-counter-suffix="+">0</div><p class="stat__label">.stat + data-counter</p></div>
+              </div>
+            </div>
+
+            <h3 class="display-sm" style="margin:var(--sp-7) 0 var(--sp-4)">Form & accordion</h3>
+            <div class="grid grid--2" data-stagger="0.1" data-anim="fade-up">
+              <div class="form"><div class="field"><label>Label</label><input class="input" placeholder="Placeholder"></div><div class="field"><label>Select</label><select class="input"><option>Option A</option></select></div><div class="field"><label>Textarea</label><textarea class="input" style="min-height:90px"></textarea></div><button class="btn btn--primary">Submit</button></div>
+              <div class="acc" data-accordion>
+                <div class="acc__item is-open"><button class="acc__btn" aria-expanded="true">Item terbuka<span class="acc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="acc__panel" style="height:auto"><p>Panel dianimasikan height 0 → auto via GSAP; ikon berputar 135° menjadi ×.</p></div></div>
+                <div class="acc__item"><button class="acc__btn" aria-expanded="false">Item tertutup<span class="acc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="acc__panel"><p>Klik untuk membuka.</p></div></div>
+                <div class="acc__item"><button class="acc__btn" aria-expanded="false">Item lain<span class="acc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="acc__panel"><p>Hanya satu yang terbuka.</p></div></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 6 ANIMATION PRESETS -->
+          <section class="sg-section" id="anim">
+            <div class="sg-h"><span class="num">06</span><h2 class="display-md">Preset animasi scroll</h2></div>
+            <p class="text-2 small">Semua kotak di bawah memakai <code class="tag">data-anim-once="false"</code> sehingga terulang setiap masuk viewport. Tombol <b>Replay</b> memanggil <code class="tag">Anim.preview(el)</code>.</p>
+            <div class="row mt-6" style="margin-bottom:var(--sp-5)"><button class="btn btn--accent btn--sm" data-replay-all>▶ Replay semua</button><span class="small muted">atau scroll ke atas lalu turun lagi</span></div>
+            <div class="demo" data-presets></div>
+
+            <h3 class="display-sm" style="margin:var(--sp-8) 0 var(--sp-4)">Modul lain</h3>
+            <div class="demo" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+              <div class="demo__item"><h3 class="display-md" data-split="words" data-anim-once="false" data-demo>Split per kata</h3><div class="demo__code">data-split="words"</div></div>
+              <div class="demo__item"><h3 class="display-md" data-split="chars" data-anim-once="false" data-demo>Per karakter</h3><div class="demo__code">data-split="chars"</div></div>
+              <div class="demo__item"><h3 class="display-md" data-split="lines" data-anim-once="false" data-demo>Per baris,<br>dua baris</h3><div class="demo__code">data-split="lines"  (pisah dengan &lt;br&gt;)</div></div>
+              <div class="demo__item"><div class="row" data-stagger="0.1" data-anim="pop" data-anim-once="false" data-demo><span class="badge badge--accent">1</span><span class="badge badge--accent">2</span><span class="badge badge--accent">3</span><span class="badge badge--accent">4</span><span class="badge badge--accent">5</span></div><div class="demo__code">data-stagger="0.1" data-anim="pop"</div></div>
+              <div class="demo__item"><div class="row" data-stagger="0.08" data-anim="zoom-in" data-stagger-from="center" data-anim-once="false" data-demo><span class="badge">A</span><span class="badge">B</span><span class="badge">C</span><span class="badge">D</span><span class="badge">E</span></div><div class="demo__code">data-stagger-from="center"</div></div>
+              <div class="demo__item"><div class="stat__value" data-counter="38.5" data-counter-decimals="1" data-counter-suffix=" MW" data-demo>0</div><div class="demo__code">data-counter="38.5" data-counter-decimals="1" data-counter-suffix=" MW"</div></div>
+              <div class="demo__item"><div class="device__chart" style="height:110px" data-stagger="0.06" data-anim="grow-up" data-anim-once="false" data-demo><i class="device__bar" style="height:40%"></i><i class="device__bar" style="height:70%"></i><i class="device__bar" style="height:55%"></i><i class="device__bar" style="height:95%"></i><i class="device__bar" style="height:65%"></i></div><div class="demo__code">data-stagger data-anim="grow-up"</div></div>
+              <div class="demo__item"><svg viewBox="0 0 300 100" style="height:110px;width:100%" data-draw data-anim-once="false" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"><path d="M10 80 C 60 10 100 90 150 40 S 240 10 290 60"/><circle cx="150" cy="40" r="8"/></svg><div class="demo__code">&lt;svg data-draw&gt; — stroke digambar</div></div>
+              <div class="demo__item"><div class="reveal-mask" style="border-radius:var(--r-md)"><div class="reveal-mask__inner demo__box" style="border-radius:0">reveal-mask</div></div><div class="demo__code">class="reveal-mask" — tirai warna aksen</div></div>
+              <div class="demo__item"><div class="demo__box" data-tilt="14" style="cursor:crosshair">data-tilt="14"</div><div class="demo__code">hover → tilt 3D mengikuti kursor</div></div>
+              <div class="demo__item"><div class="demo__box" style="background:transparent;border:1px dashed var(--border)"><a class="btn btn--primary" href="#" data-magnetic="0.45">data-magnetic</a></div><div class="demo__code">tombol menempel ke kursor</div></div>
+              <div class="demo__item"><div class="demo__box" data-mouse-parallax="2" style="position:relative;overflow:hidden"><span data-depth="0.02" style="position:absolute;inset:12px;border-radius:8px;background:rgba(255,255,255,.08)"></span><span data-depth="0.06" style="position:absolute;width:40px;height:40px;border-radius:50%;background:var(--accent)"></span><span data-depth="-0.04" style="position:absolute;width:24px;height:24px;border-radius:50%;background:var(--c-sky-300);right:30px;bottom:24px"></span></div><div class="demo__code">data-mouse-parallax &gt; [data-depth]</div></div>
+            </div>
+            <div class="mt-6">
+              <div class="marquee" data-marquee data-marquee-speed="50"><div class="marquee__track"><span class="badge">Produce</span><span class="badge">Exchange</span><span class="badge">Grow</span><span class="badge">Store</span><span class="badge">Share</span><span class="badge">Monitor</span></div></div>
+              <div class="demo__code" style="margin-top:var(--sp-2)">class="marquee" data-marquee data-marquee-speed="50" — melambat saat hover; tambah data-marquee-scrub agar dipercepat scroll</div>
+            </div>
+          </section>
+
+          <!-- 7 IDLE -->
+          <section class="sg-section" id="idle">
+            <div class="sg-h"><span class="num">07</span><h2 class="display-md">Animasi idle (CSS murni)</h2></div>
+            <p class="text-2 small">Tanpa JS. Cukup tambahkan atribut. Otomatis mati pada <code class="tag">prefers-reduced-motion</code>. Catatan: jangan gabungkan dengan <code class="tag">data-anim</code> pada elemen yang sama (keduanya memakai <code class="tag">transform</code>) — bungkus salah satunya.</p>
+            <div class="demo mt-6" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">
+              <div class="demo__item"><div class="demo__box" data-float>data-float</div></div>
+              <div class="demo__item"><div class="demo__box" data-float="rotate">data-float="rotate"</div></div>
+              <div class="demo__item"><div class="demo__box" data-float="x">data-float="x"</div></div>
+              <div class="demo__item"><div class="demo__box" data-pulse>data-pulse</div></div>
+              <div class="demo__item"><div class="demo__box" data-breathe>data-breathe</div></div>
+              <div class="demo__item"><div class="demo__box" style="border-radius:50%;width:110px;margin:auto;background:transparent;border:1px dashed var(--accent)" data-spin>data-spin</div></div>
+              <div class="demo__item"><div class="demo__box" style="background:transparent"><svg viewBox="0 0 40 60" width="40" height="60"><g data-sway><path d="M20 60 C 22 40 18 30 20 10" stroke="var(--c-green-400)" stroke-width="3" fill="none"/><circle cx="20" cy="10" r="8" fill="var(--accent)"/></g></svg></div><div class="demo__code">data-sway (SVG)</div></div>
+              <div class="demo__item"><div class="demo__box shimmer" style="color:var(--text-2)">.shimmer</div></div>
+              <div class="demo__item"><div class="demo__box" style="background:transparent"><button class="btn btn--primary btn--icon pulse-ring" aria-label="Play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div><div class="demo__code">.pulse-ring</div></div>
+              <div class="demo__item"><div class="demo__box" style="background:transparent"><span class="display-sm text-gradient">.text-gradient</span></div></div>
+              <div class="demo__item"><div class="demo__box" style="background:transparent"><span class="hero__mouse" style="border-color:var(--text)"></span></div><div class="demo__code">.hero__mouse</div></div>
+              <div class="demo__item"><div class="demo__box" style="background:transparent;position:relative;overflow:hidden"><i class="particle" style="left:20%;bottom:10%"></i><i class="particle" style="left:50%;bottom:10%;animation-delay:-3s"></i><i class="particle" style="left:80%;bottom:10%;animation-delay:-6s"></i></div><div class="demo__code">.particle</div></div>
+            </div>
+          </section>
+
+          <!-- 8 HERO LAYERS -->
+          <section class="sg-section" id="hero">
+            <div class="sg-h"><span class="num">08</span><h2 class="display-md">Lapisan ilustrasi hero</h2></div>
+            <p class="text-2 small" style="margin-bottom:var(--sp-5)">Ilustrasi hero adalah 7 lapisan SVG inline (tanpa file gambar) di dalam <code class="tag">.hero__scene</code>. Setiap lapisan punya <code class="tag">data-hero-layer="kecepatan"</code> (parallax scroll, dikontrol <code class="tag">main.js</code>) dan SVG-nya punya <code class="tag">data-depth</code> (parallax kursor). Untuk memakai gambar sendiri, ganti isi <code class="tag">&lt;svg&gt;</code> dengan <code class="tag">&lt;img&gt;</code> berukuran 1440×900 dan atribut yang sama.</p>
+            <ol class="layer-list" data-stagger="0.06" data-anim="fade-up">
+              <li><div><b>Siluet kota</b> — gedung, menara pendingin, crane (putih transparan). <small>data-hero-layer="0.55" · data-depth="0.005" · paling lambat</small></div></li>
+              <li><div><b>Gunung jauh</b> — gradien abu-kebiruan dengan garis striasi. <small>data-hero-layer="0.42" · data-depth="0.009"</small></div></li>
+              <li><div><b>Gunung dekat</b> — lebih gelap + petak rumput kuning. <small>data-hero-layer="0.3" · data-depth="0.013"</small></div></li>
+              <li><div><b>Turbin angin</b> — 4 turbin; bilah berputar via GSAP (<code class="tag">[data-turbine="durasi"]</code>), dipercepat saat scroll cepat. <small>data-hero-layer="0.24" · data-depth="0.015"</small></div></li>
+              <li><div><b>Perbukitan teal</b> — dengan petak kuning. <small>data-hero-layer="0.18" · data-depth="0.018"</small></div></li>
+              <li><div><b>Ladang, tiang listrik, rumah panel surya</b> — rumah memakai <code class="tag">&lt;use href="#house"&gt;</code> sehingga mudah ditambah. <small>data-hero-layer="0.1" · data-depth="0.022"</small></div></li>
+              <li><div><b>Semak & bunga latar depan</b> — bunga bergoyang (<code class="tag">data-sway</code>), serbuk melayang. Nilai negatif = bergerak berlawanan (lebih cepat dari scroll). <small>data-hero-layer="-0.12" · data-depth="0.03" · paling cepat</small></div></li>
+            </ol>
+            <div class="code mt-6"><span class="c">&lt;!-- pola satu lapisan; tambah/kurangi sesuka hati --&gt;</span>
+<span class="t">&lt;div</span> class="hero__layer" <span class="a">data-hero-layer</span>="0.3"<span class="t">&gt;</span>
+  <span class="t">&lt;svg</span> <span class="a">data-depth</span>="0.013" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice"<span class="t">&gt;</span> … <span class="t">&lt;/svg&gt;</span>
+<span class="t">&lt;/div&gt;</span></div>
+          </section>
+
+          <!-- 9 REFERENCE -->
+          <section class="sg-section" id="ref">
+            <div class="sg-h"><span class="num">09</span><h2 class="display-md">Referensi atribut</h2></div>
+            <div class="ref-wrap" data-anim="fade-up">
+            <table class="ref">
+              <thead><tr><th>Atribut</th><th>Fungsi</th><th>Opsi / catatan</th></tr></thead>
+              <tbody>
+                <tr><td><code>data-anim="preset"</code></td><td>Reveal saat masuk viewport</td><td>fade, fade-up, fade-down, fade-left, fade-right, slide-up, zoom-in, zoom-out, pop, flip-up, flip-left, rotate-in, skew-up, blur-in, clip-up, clip-left, clip-right, grow-up, grow-x</td></tr>
+                <tr><td><code>data-anim-delay</code> / <code>data-anim-duration</code></td><td>Detik</td><td>default 0 / <code>--dur-base</code></td></tr>
+                <tr><td><code>data-anim-distance</code></td><td>Jarak geser (px)</td><td>default <code>--anim-distance</code></td></tr>
+                <tr><td><code>data-anim-ease</code></td><td>Easing GSAP</td><td>expo.out, power3.out, back.out(1.7), elastic.out(1,.4)…</td></tr>
+                <tr><td><code>data-anim-once="false"</code></td><td>Ulang setiap masuk viewport</td><td>default sekali</td></tr>
+                <tr><td><code>data-anim-start</code> / <code>data-anim-end</code></td><td>Titik trigger ScrollTrigger</td><td>mis. "top 70%"</td></tr>
+                <tr><td><code>data-anim-scrub</code></td><td>Progres mengikuti scroll</td><td>kombinasikan dengan start/end</td></tr>
+                <tr><td><code>data-anim-trigger="#sel"</code></td><td>Trigger elemen lain</td><td>selector CSS</td></tr>
+                <tr><td><code>data-stagger="0.1"</code></td><td>Anak-anak muncul bergantian</td><td>+ <code>data-anim</code> untuk preset, <code>data-stagger-from</code>: start|center|end|edges|random</td></tr>
+                <tr><td><code>data-split="words|chars|lines"</code></td><td>Teks muncul per unit</td><td><code>data-split-stagger</code>; pertahankan &lt;br&gt; dan &lt;span class&gt; di dalamnya</td></tr>
+                <tr><td><code>data-parallax="0.3"</code></td><td>Parallax scroll</td><td>positif = lebih lambat, negatif = berlawanan; container: <code>data-parallax-container</code></td></tr>
+                <tr><td><code>data-mouse-parallax</code> &gt; <code>data-depth</code></td><td>Parallax kursor</td><td><code>data-mouse-parallax-window</code> agar dengar seluruh window</td></tr>
+                <tr><td><code>data-counter="1200"</code></td><td>Angka naik</td><td><code>-prefix</code>, <code>-suffix</code>, <code>-decimals</code>, <code>-sep</code> ("." | "," | "none")</td></tr>
+                <tr><td><code>data-marquee</code></td><td>Teks/kartu berjalan</td><td><code>-speed</code> (px/s), <code>-direction</code>="right", <code>data-marquee-scrub</code></td></tr>
+                <tr><td><code>data-magnetic="0.3"</code></td><td>Tombol magnet</td><td>hanya perangkat hover</td></tr>
+                <tr><td><code>data-tilt="8"</code></td><td>Tilt 3D hover</td><td>derajat maksimum</td></tr>
+                <tr><td><code>data-draw</code></td><td>Gambar stroke SVG</td><td><code>data-draw-stagger</code>; + <code>data-anim-scrub</code> & <code>data-draw-container</code> untuk scrub</td></tr>
+                <tr><td><code>class="reveal-mask"</code></td><td>Tirai warna aksen</td><td>isi: img/video/svg/.reveal-mask__inner</td></tr>
+                <tr><td><code>data-progress</code></td><td>Progress bar halaman</td><td>scaleX 0→1</td></tr>
+                <tr><td><code>data-scroll-class="is-inview"</code></td><td>Toggle class saat terlihat</td><td><code>data-anim-once="true"</code> agar tidak dilepas</td></tr>
+                <tr><td><code>data-nav-section="id"</code></td><td>Highlight <code>.nav__link[href="#id"]</code></td><td>—</td></tr>
+                <tr><td><code>data-intro="…"</code></td><td>Disembunyikan lalu dimainkan timeline intro hero</td><td>khusus main.js</td></tr>
+                <tr><td><code>data-float</code>, <code>data-spin</code>, <code>data-pulse</code>, <code>data-breathe</code>, <code>data-sway</code></td><td>Animasi idle CSS</td><td><code>data-delay="1..4"</code> untuk offset fase</td></tr>
+                <tr><td><code>?noanim</code> (URL)</td><td>Mode statis untuk debug layout</td><td>sama seperti prefers-reduced-motion</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h3 class="display-sm" style="margin:var(--sp-7) 0 var(--sp-4)">API JavaScript</h3>
+            <div class="code"><span class="c">// jalankan semua modul (sekali, setelah DOM siap). scope opsional.</span>
+Anim.init();                 Anim.init(document.querySelector('#modal'));
+<span class="c">// mainkan ulang reveal elemen sekarang (untuk demo / konten dinamis)</span>
+Anim.preview(el);
+<span class="c">// hitung ulang posisi setelah konten berubah (accordion, tab, fetch)</span>
+Anim.refresh();
+<span class="c">// tambah preset sendiri sebelum init ('D' = kelipatan --anim-distance)</span>
+Anim.presets['swing'] = { from: { opacity: 0, rotation: -12, y: '+=D', transformOrigin: '0% 0%' }, ease: 'back.out(1.6)' };
+
+<span class="c">// React / Vue / Next: panggil di effect setelah mount, refresh saat route berubah</span>
+useEffect(() =&gt; { Anim.init(ref.current); return () =&gt; ScrollTrigger.getAll().forEach(t =&gt; t.kill()); }, []);</div>
+          </section>
+
+          <!-- 10 MOTION PRINCIPLES -->
+          <section class="sg-section" id="motion">
+            <div class="sg-h"><span class="num">10</span><h2 class="display-md">Prinsip motion</h2></div>
+            <div class="dd" data-stagger="0.1" data-anim="fade-up">
+              <div class="yes"><h4 class="display-sm accent">Lakukan</h4><ul><li>Satu arah gerak per section (mis. semua fade-up) agar terasa tenang.</li><li>Stagger 0.06–0.15s; lebih dari 6 item, kecilkan jeda.</li><li>Durasi 0.6–1.2s dengan expo.out untuk reveal; back.out untuk elemen kecil (badge, tombol).</li><li>Parallax lapisan jauh lebih lambat dari lapisan dekat.</li><li>Hormati <code class="tag">prefers-reduced-motion</code> — sudah otomatis.</li><li>Pakai <code class="tag">?noanim</code> saat memeriksa layout.</li></ul></div>
+              <div class="no"><h4 class="display-sm">Hindari</h4><ul><li>Menggabungkan animasi CSS transform (data-float) dan GSAP (data-anim) pada elemen yang sama.</li><li>Lebih dari 3 preset berbeda dalam satu viewport.</li><li>Split chars pada paragraf panjang (berat & sulit dibaca).</li><li>Parallax pada teks utama yang harus dibaca.</li><li>Animasi yang menggeser layout (gunakan transform/opacity saja).</li></ul></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" style="padding-top:var(--sp-7)">
+    <div class="container footer__bottom"><span>Tokora Style Guide · nilai dibaca live dari css/tokens.css</span><a href="index.html" class="link-draw">← Kembali ke landing page</a></div>
+  </footer>
+
+  <div class="controls">
+    <button class="control control--theme" data-theme-toggle aria-label="Toggle theme" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg></button>
+  </div>
+  <div class="toast" data-toast>Disalin</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+  (function () {
+    const $ = (s, c = document) => c.querySelector(s);
+    const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+    const css = () => getComputedStyle(document.documentElement);
+
+    /* ---- swatch dibangun dari token (selalu sinkron dengan tokens.css) ---- */
+    const BRAND = ['--c-teal-950','--c-teal-900','--c-teal-800','--c-teal-700','--c-teal-600','--c-green-600','--c-green-500','--c-green-400','--c-yellow-300','--c-yellow-400','--c-yellow-500','--c-blue-500','--c-blue-400','--c-blue-300','--c-sky-300','--c-sky-400','--c-sky-500','--c-orange-400','--c-white','--c-mist-100','--c-mist-300','--c-mist-500'];
+    const SEMANTIC = ['--bg','--bg-2','--bg-3','--bg-footer','--surface','--blob','--text','--text-2','--text-muted','--heading','--heading-accent','--primary','--primary-hover','--accent','--success','--card-active','--icon-bg','--border','--border-strong','--hero-sky-top','--hero-sky-bottom'];
+    function renderSwatches() {
+      [['brand', BRAND], ['semantic', SEMANTIC]].forEach(([key, list]) => {
+        const wrap = $(`[data-swatches="${key}"]`); if (!wrap) return;
+        wrap.innerHTML = list.map((v) => `<button class="swatch" data-copy="var(${v})" title="Salin var(${v})"><div class="swatch__color" style="background:var(${v})"></div><div class="swatch__meta"><b>${v}</b><span>${css().getPropertyValue(v).trim()}</span></div></button>`).join('');
+      });
+    }
+    renderSwatches();
+    const toast = $('[data-toast]'); let tt;
+    document.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-copy]'); if (!b) return;
+      navigator.clipboard?.writeText(b.getAttribute('data-copy'));
+      toast.textContent = 'Disalin: ' + b.getAttribute('data-copy'); toast.classList.add('is-show'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('is-show'), 1400);
+    });
+
+    /* ---- grid preset dibangun dari Anim.presets ---- */
+    const wrap = $('[data-presets]');
+    Object.keys(Anim.presets).forEach((name) => {
+      const item = document.createElement('div'); item.className = 'demo__item';
+      item.innerHTML = `<div class="demo__box" data-anim="${name}" data-anim-once="false" data-demo>${name}</div><div class="row row--between"><span class="demo__code">data-anim="${name}"</span><button class="btn btn--ghost btn--sm" data-replay>Replay</button></div>`;
+      wrap.appendChild(item);
+    });
+    document.addEventListener('click', (e) => {
+      const r = e.target.closest('[data-replay]'); if (!r) return;
+      Anim.preview(r.closest('.demo__item').querySelector('[data-demo]'));
+    });
+    $('[data-replay-all]')?.addEventListener('click', () => $$('[data-demo]').forEach((el, i) => setTimeout(() => Anim.preview(el), i * 40)));
+
+    /* ---- init engine setelah DOM dinamis siap ---- */
+    Anim.init();
+
+    /* ---- interaksi komponen demo ---- */
+    $$('[data-sg-features] [data-feature]').forEach((c, i, all) => c.addEventListener('click', () => all.forEach((o) => o.classList.toggle('is-active', o === c))));
+    $$('[data-accordion] .acc__item').forEach((item, i, items) => $('.acc__btn', item).addEventListener('click', () => {
+      const open = !item.classList.contains('is-open');
+      items.forEach((o) => { const p = $('.acc__panel', o); const on = o === item && open; o.classList.toggle('is-open', on); $('.acc__btn', o).setAttribute('aria-expanded', String(on)); gsap.to(p, { height: on ? 'auto' : 0, duration: .5, ease: 'expo.out' }); });
+    }));
+    const tbtn = $('[data-theme-toggle]'); const html = document.documentElement;
+    tbtn.setAttribute('aria-pressed', String(html.getAttribute('data-theme') === 'light'));
+    tbtn.addEventListener('click', () => { const t = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light'; html.setAttribute('data-theme', t); tbtn.setAttribute('aria-pressed', String(t === 'light')); try { localStorage.setItem('tokora-theme', t); } catch (e) {} setTimeout(renderSwatches, 50); });
+
+    /* ---- highlight daftar isi ---- */
+    const links = $$('.sg-side a');
+    $$('.sg-section').forEach((sec) => ScrollTrigger.create({ trigger: sec, start: 'top 40%', end: 'bottom 40%', onToggle: (s) => links.forEach((l) => l.classList.toggle('is-active', s.isActive && l.getAttribute('href') === '#' + sec.id)) }));
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+/* =====================================================================
+   TOKORA — DESIGN TOKENS (palet navy + lime)
+   ---------------------------------------------------------------------
+   ★ SATU-SATUNYA FILE YANG PERLU DIUBAH UNTUK GANTI BRAND.
+   Semua warna, font, ukuran, spasi, radius, bayangan & timing animasi
+   didefinisikan di sini sebagai CSS custom property.
+
+   Cara adaptasi cepat:
+   1. Ganti palet di "BRAND COLORS".
+   2. Petakan ulang "SEMANTIC COLORS" (bg, text, primary, accent, ...).
+   3. Ganti font di "TYPOGRAPHY" (+ link Google Fonts di <head>).
+   4. Selesai — semua komponen & animasi mengikuti otomatis.
+   ===================================================================== */
+
+:root {
+  /* ---------- BRAND COLORS ---------- */
+  --c-navy-950: #060F24;    /* footer / paling gelap */
+  --c-navy-900: #0B1B3F;    /* background utama (dark) — warna brand */
+  --c-navy-800: #12275A;    /* kartu, blob dekorasi */
+  --c-navy-700: #1A3470;    /* lingkaran ikon */
+  --c-navy-600: #22428A;    /* kartu aktif */
+  --c-navy-500: #2F56AD;
+  --c-navy-300: #8FA6D9;
+  --c-navy-100: #DCE3F2;
+  --c-lime-200: #D9F99D;
+  --c-lime-300: #BEF264;    /* judul section berwarna */
+  --c-lime-400: #A3E635;    /* tombol utama, ikon, aksen */
+  --c-lime-500: #84CC16;    /* hover aksen */
+  --c-lime-600: #65A30D;
+  --c-lime-700: #4D7C0F;    /* sukses / aksen di tema terang */
+  --c-coral-400: #FB7185;   /* peringatan / error form */
+  --c-white: #FFFFFF;
+  --c-mist-100: #EEF2FA;    /* teks utama di dark */
+  --c-mist-300: #C3CCE0;    /* teks sekunder */
+  --c-mist-500: #8A96B3;    /* teks redup / caption */
+
+  /* Alias nama lama template (dipakai components/sections/auth.css).
+     Jangan dipakai di kode baru — pakai --c-navy-* / --c-lime-*. */
+  --c-teal-950: var(--c-navy-950);
+  --c-teal-900: var(--c-navy-900);
+  --c-teal-800: var(--c-navy-800);
+  --c-teal-700: var(--c-navy-700);
+  --c-teal-600: var(--c-navy-600);
+  --c-green-600: var(--c-navy-600);
+  --c-green-500: var(--c-lime-700);
+  --c-green-400: var(--c-lime-500);
+  --c-yellow-300: var(--c-lime-300);
+  --c-yellow-400: var(--c-lime-400);
+  --c-yellow-500: var(--c-lime-500);
+  --c-blue-500: var(--c-navy-500);
+  --c-blue-400: var(--c-navy-300);
+  --c-blue-300: var(--c-navy-300);
+  --c-sky-300: var(--c-navy-100);
+  --c-sky-400: var(--c-navy-500);
+  --c-sky-500: var(--c-navy-600);
+  --c-orange-400: var(--c-coral-400);
+
+  /* ---------- SEMANTIC COLORS (dark = default) ---------- */
+  --bg: var(--c-navy-900);
+  --bg-2: var(--c-navy-800);
+  --bg-3: var(--c-navy-700);
+  --bg-footer: var(--c-navy-950);
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.07);
+  --blob: rgba(255, 255, 255, 0.035);
+  --text: var(--c-mist-100);
+  --text-2: var(--c-mist-300);
+  --text-muted: var(--c-mist-500);
+  --heading: var(--c-white);
+  --heading-accent: var(--c-lime-300);
+  --primary: var(--c-lime-400);
+  --primary-hover: var(--c-lime-300);
+  --primary-text: var(--c-navy-900);
+  --accent: var(--c-lime-400);
+  --accent-ink: var(--c-lime-400);   /* aksen untuk TEKS/IKON di atas latar halaman */
+  --success: var(--c-lime-700);
+  --card-active: var(--c-navy-600);
+  --icon-bg: var(--c-navy-700);
+  --icon-bg-active: rgba(0, 0, 0, 0.28);
+  --border: rgba(255, 255, 255, 0.14);
+  --border-strong: rgba(255, 255, 255, 0.35);
+  --nav-bg: rgba(11, 27, 63, 0.72);
+  --hero-sky-top: var(--c-navy-900);
+  --hero-sky-bottom: #2B4E9B;   /* cahaya kota di cakrawala */
+  --hero-text: var(--c-white);
+  --hero-text-2: rgba(255, 255, 255, 0.88);
+  --hero-title-shadow: 0 8px 30px rgba(6, 15, 36, 0.4);
+  --hero-glow: rgba(255, 255, 255, 0.35);   /* bulan (dark) / matahari (light) */
+  --hero-cloud: rgba(255, 255, 255, 0.22);
+  --hero-city: var(--c-white);              /* siluet gedung di lapisan 1 */
+  --hero-stars: 1;
+  /* lanskap hero (malam) */
+  --h-far-a: #23448C; --h-far-b: #1C3877; --h-far-line: #132B63;
+  --h-near-a: #193470; --h-near-b: #142B60; --h-near-line: #0E2150;
+  --h-hill-a: #11285C; --h-hill-b: #0E2250;
+  --h-field-a: #15306A; --h-field-b: #0F2556;
+  --h-band-a: #0B1E4A; --h-band-b: #091838;
+  --h-front-a: #0B1B3F; --h-front-b: #060F24;
+  --h-blade-a: #0E2150; --h-blade-b: #0A1838;
+  --selection: var(--c-lime-400);
+
+  /* ---------- TYPOGRAPHY ---------- */
+  --font-display: 'Outfit', 'Poppins', system-ui, sans-serif;
+  --font-body: 'Rubik', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --fs-display-xl: clamp(2.6rem, 5vw, 4.25rem);   /* hero */
+  --fs-display-lg: clamp(2.1rem, 4vw, 3.5rem);    /* judul section */
+  --fs-display-md: clamp(1.5rem, 2.4vw, 2.1rem);  /* judul blok */
+  --fs-display-sm: clamp(1.15rem, 1.6vw, 1.4rem); /* judul kartu */
+  --fs-body-lg: 1.125rem;
+  --fs-body: 1rem;
+  --fs-body-sm: 0.9rem;
+  --fs-caption: 0.78rem;
+
+  --fw-display: 600;
+  --lh-tight: 1.05;
+  --lh-snug: 1.25;
+  --lh-normal: 1.7;
+  --ls-display: -0.01em;
+  --ls-caps: 0.08em;
+
+  /* ---------- SPACING (8pt scale) ---------- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+  --sp-10: 8rem;
+  --section-y: clamp(4.5rem, 9vw, 8rem);
+  --container: 1200px;
+  --container-pad: clamp(1.25rem, 4vw, 2.5rem);
+
+  /* ---------- RADIUS ---------- */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 22px;
+  --r-xl: 32px;
+  --r-pill: 999px;
+
+  /* ---------- SHADOWS ---------- */
+  --shadow-sm: 0 4px 12px -4px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 14px 32px -12px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 32px 64px -24px rgba(0, 0, 0, 0.55);
+  --shadow-glow: 0 0 0 4px rgba(163, 230, 53, 0.22);
+
+  /* ---------- MOTION ---------- */
+  --dur-fast: 0.25s;
+  --dur-base: 0.7s;
+  --dur-slow: 1.2s;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);       /* expo-out */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);  /* back-out */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --anim-distance: 44px;   /* jarak default fade-up/down/left/right */
+  --anim-stagger: 0.1s;    /* jeda antar anak pada data-stagger */
+
+  /* ---------- Z-INDEX ---------- */
+  --z-hero-content: 5;
+  --z-nav: 100;
+  --z-controls: 120;
+  --z-modal: 400;
+  --z-cursor: 500;
+  --z-loader: 1000;
+}
+
+/* =====================================================================
+   LIGHT THEME (default) — aktif saat <html data-theme="light">
+   Hanya token semantik yang ditimpa; brand color tetap.
+   ===================================================================== */
+html[data-theme="light"] {
+  --bg: #F7F8FA;
+  --bg-2: #ECEFF6;
+  --bg-3: #DCE3F2;
+  --bg-footer: var(--c-navy-900);
+  --surface: rgba(11, 27, 63, 0.04);
+  --surface-hover: rgba(11, 27, 63, 0.08);
+  --blob: rgba(11, 27, 63, 0.04);
+  --text: #111827;
+  --text-2: #3B4660;
+  --text-muted: #6B7690;
+  --heading: var(--c-navy-900);
+  --heading-accent: var(--c-lime-700);
+  --accent-ink: var(--c-lime-700);
+  --card-active: var(--c-navy-800);
+  --icon-bg: var(--c-navy-900);
+  --icon-bg-active: rgba(0, 0, 0, 0.22);
+  --border: rgba(11, 27, 63, 0.14);
+  --border-strong: rgba(11, 27, 63, 0.35);
+  --nav-bg: rgba(247, 248, 250, 0.8);
+  --hero-sky-top: #F7F8FA;
+  --hero-sky-bottom: #CBD7F0;
+  --hero-text: var(--c-navy-900);
+  --hero-text-2: #3B4660;
+  --hero-title-shadow: none;
+  --hero-glow: rgba(163, 230, 53, 0.35);
+  --hero-cloud: rgba(255, 255, 255, 0.85);
+  --hero-city: var(--c-navy-500);
+  --hero-stars: 0;
+  /* lanskap hero (siang, biru pastel agar teks navy tetap terbaca) */
+  --h-far-a: #C9D5EE; --h-far-b: #BFCDEA; --h-far-line: #A6BAE2;
+  --h-near-a: #B3C4E6; --h-near-b: #A6BAE2; --h-near-line: #8FA6D9;
+  --h-hill-a: #94ABDB; --h-hill-b: #869FD5;
+  --h-field-a: #7B96D0; --h-field-b: #6B89C8;
+  --h-band-a: #5B7BC0; --h-band-b: #4D6FB8;
+  --h-front-a: #22428A; --h-front-b: #12275A;
+  --h-blade-a: #2F56AD; --h-blade-b: #22428A;
+  --shadow-sm: 0 4px 12px -4px rgba(11, 27, 63, 0.14);
+  --shadow-md: 0 14px 32px -12px rgba(11, 27, 63, 0.18);
+  --shadow-lg: 0 32px 64px -24px rgba(11, 27, 63, 0.25);
+}

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "tokora-landing",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5211"],
+      "port": 5211
+    }
+  ]
+}

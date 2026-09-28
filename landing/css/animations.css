@@ -1,0 +1,82 @@
+/* =====================================================================
+   ANIMATIONS — state awal reveal, keyframes idle, reduced-motion
+   ---------------------------------------------------------------------
+   Elemen dengan [data-anim] disembunyikan dulu oleh CSS (mencegah flash),
+   lalu GSAP (js/animations.js) menganimasikannya saat masuk viewport.
+   Jika GSAP gagal dimuat, class `no-js` di <html> memastikan semua tampil.
+   ===================================================================== */
+
+/* ---------- STATE AWAL REVEAL ---------- */
+html:not(.no-js) [data-anim] { opacity: 0; }
+html:not(.no-js) [data-stagger] > * { opacity: 0; }
+html:not(.no-js) [data-split] .split-unit { opacity: 0; }
+html:not(.no-js) [data-draw] path,
+html:not(.no-js) [data-draw] line,
+html:not(.no-js) [data-draw] circle,
+html:not(.no-js) [data-draw] polyline { stroke-dasharray: 1; stroke-dashoffset: 1; }
+html:not(.no-js) [data-intro] { opacity: 0; } /* elemen hero yang dianimasikan oleh timeline intro */
+
+.anim-visible { opacity: 1 !important; transform: none !important; }
+
+/* ---------- SPLIT TEXT ---------- */
+.split-line { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.split-unit { display: inline-block; will-change: transform, opacity; }
+[data-split="chars"] .split-unit { white-space: pre; }
+
+/* ---------- IMAGE / BLOCK REVEAL MASK ---------- */
+.reveal-mask { position: relative; overflow: hidden; }
+.reveal-mask::after { content: ""; position: absolute; inset: 0; background: var(--accent); transform-origin: left; }
+html.no-js .reveal-mask::after, .reveal-mask--js::after { display: none; }
+
+/* ---------- KEYFRAMES IDLE (looping, CSS murni) ---------- */
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+@keyframes float-x { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(18px); } }
+@keyframes float-rotate { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-10px) rotate(3deg); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@keyframes pulse-ring { 0% { transform: scale(.8); opacity: .8; } 100% { transform: scale(1.8); opacity: 0; } }
+@keyframes breathe { 0%, 100% { transform: scale(1); opacity: .9; } 50% { transform: scale(1.08); opacity: 1; } }
+@keyframes sway { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+@keyframes drift { from { transform: translateX(-12%); } to { transform: translateX(112%); } }
+@keyframes rise { 0% { transform: translateY(0) scale(1); opacity: 0; } 15% { opacity: .9; } 100% { transform: translateY(-140px) scale(.4); opacity: 0; } }
+@keyframes shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+@keyframes scroll-wheel { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(10px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
+@keyframes gradient-move { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+/* utilitas: cukup tambahkan atribut */
+[data-float] { animation: float 5s var(--ease-in-out) infinite; }
+[data-float="x"] { animation: float-x 7s var(--ease-in-out) infinite; }
+[data-float="rotate"] { animation: float-rotate 6s var(--ease-in-out) infinite; }
+[data-float="slow"] { animation-duration: 9s; }
+[data-spin] { animation: spin 16s linear infinite; }
+[data-spin="fast"] { animation-duration: 4s; }
+[data-pulse] { animation: pulse 2.4s var(--ease-in-out) infinite; }
+[data-breathe] { animation: breathe 6s var(--ease-in-out) infinite; }
+[data-sway] { animation: sway 4s var(--ease-in-out) infinite; transform-origin: 50% 100%; transform-box: fill-box; }
+[data-delay="1"] { animation-delay: -1s; } [data-delay="2"] { animation-delay: -2s; } [data-delay="3"] { animation-delay: -3s; } [data-delay="4"] { animation-delay: -4s; }
+
+/* teks gradient bergerak */
+.text-gradient { background: linear-gradient(90deg, var(--heading-accent), var(--c-green-400), var(--heading-accent)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: gradient-move 6s ease infinite; }
+
+/* underline yang "digambar" saat hover */
+.link-draw { background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size var(--dur-base) var(--ease-out); }
+.link-draw:hover { background-size: 100% 1.5px; }
+
+/* ring pulse (mis. tombol play) */
+.pulse-ring { position: relative; }
+.pulse-ring::before { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 1.5px solid currentColor; animation: pulse-ring 2s var(--ease-out) infinite; }
+
+/* skeleton shimmer */
+.shimmer { background: linear-gradient(90deg, var(--surface) 25%, var(--surface-hover) 50%, var(--surface) 75%); background-size: 200% 100%; animation: shimmer 1.6s linear infinite; }
+
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html:not(.no-js) [data-anim],
+  html:not(.no-js) [data-stagger] > *,
+  html:not(.no-js) [data-split] .split-unit,
+  html:not(.no-js) [data-intro] { opacity: 1; }
+  html:not(.no-js) [data-draw] * { stroke-dasharray: none; stroke-dashoffset: 0; }
+  [data-float], [data-float="x"], [data-float="rotate"], [data-spin], [data-pulse], [data-breathe], [data-sway], .text-gradient, .pulse-ring::before, .shimmer { animation: none !important; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

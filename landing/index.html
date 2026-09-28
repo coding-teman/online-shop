@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tokora — Buka toko online, jualan di mana saja</title>
+  <meta name="description" content="Tokora adalah platform toko online multi-toko: jualan di marketplace, landing page toko, dan domain sendiri dari satu dasbor.">
+  <meta name="theme-color" content="#F7F8FA">
+
+  <!-- Fonts: ganti di sini + di tokens.css (--font-display / --font-body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Urutan wajib: tokens → base → components → sections → animations -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <!-- Tema tersimpan diterapkan sebelum render agar tidak berkedip -->
+  <script>try{var t=localStorage.getItem('tokora-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body>
+  <a class="skip-link" href="#about">Langsung ke konten</a>
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div>
+      <svg class="preloader__mark" viewBox="0 0 40 40" data-preloader-mark>
+        <circle cx="20" cy="20" r="18"/>
+        <path d="M13 16h14l-1.6 12.5a1.5 1.5 0 0 1-1.5 1.3h-7.8a1.5 1.5 0 0 1-1.5-1.3z"/>
+        <path d="M16.5 16v-1.5a3.5 3.5 0 0 1 7 0V16"/>
+      </svg>
+      <div class="preloader__word" data-preloader-word><span>T</span><span>O</span><span>K</span><span>O</span><span>R</span><span>A</span></div>
+    </div>
+    <div class="preloader__bar" data-preloader-bar></div>
+  </div>
+
+  <div class="progress" data-progress aria-hidden="true"></div>
+  <div class="cursor" data-cursor aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" data-nav>
+    <div class="container nav__inner">
+      <a href="#top" class="brand" data-intro="nav" aria-label="Beranda Tokora">
+        <svg class="brand__mark" viewBox="0 0 40 40" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="20" cy="20" r="18"/>
+          <path d="M13 16h14l-1.6 12.5a1.5 1.5 0 0 1-1.5 1.3h-7.8a1.5 1.5 0 0 1-1.5-1.3z"/>
+          <path d="M16.5 16v-1.5a3.5 3.5 0 0 1 7 0V16"/>
+        </svg>
+        <span>TOKORA</span>
+      </a>
+      <nav class="nav__links" data-nav-links aria-label="Utama">
+        <a class="nav__link" href="#about" data-intro="nav">Tentang</a>
+        <a class="nav__link" href="#apps" data-intro="nav">Fitur</a>
+        <a class="nav__link" href="#plans" data-intro="nav">Paket</a>
+        <a class="nav__link" href="#mitra" data-intro="nav">Mitra</a>
+        <a class="nav__link" href="#faq" data-intro="nav">FAQ</a>
+        <a class="nav__link" href="#contacts" data-intro="nav">Kontak</a>
+        <a class="nav__link" href="login.html" data-intro="nav">Masuk</a>
+      </nav>
+      <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero" data-hero data-parallax-container>
+      <div class="hero__scene" data-mouse-parallax="1" data-mouse-parallax-window aria-hidden="true">
+        <div class="hero__sun" data-depth="0.006"></div>
+        <div class="cloud cloud--1"></div>
+        <div class="cloud cloud--2"></div>
+        <div class="cloud cloud--3"></div>
+        <div class="cloud cloud--4"></div>
+
+        <!-- LAYER 1: bintang + siluet kota -->
+        <div class="hero__layer" data-hero-layer="0.55">
+          <svg data-depth="0.005" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
+            <g class="hero-stars" fill="#fff">
+              <circle cx="90" cy="70" r="1.6" opacity=".7"/><circle cx="210" cy="150" r="1.2" opacity=".5"/><circle cx="330" cy="60" r="1.8" opacity=".8"/>
+              <circle cx="470" cy="190" r="1.2" opacity=".5"/><circle cx="560" cy="90" r="1.5" opacity=".6"/><circle cx="1010" cy="110" r="1.4" opacity=".6"/>
+              <circle cx="1180" cy="60" r="1.8" opacity=".8"/><circle cx="1300" cy="170" r="1.2" opacity=".5"/><circle cx="1390" cy="90" r="1.6" opacity=".7"/>
+              <circle cx="760" cy="40" r="1.3" opacity=".6"/><circle cx="1240" cy="260" r="1.1" opacity=".45"/><circle cx="140" cy="260" r="1.1" opacity=".45"/>
+            </g>
+            <g class="hero-city">
+              <rect x="540" y="300" width="70" height="330" opacity=".06"/>
+              <rect x="640" y="70" width="120" height="570" opacity=".1"/>
+              <rect x="655" y="40" width="30" height="40" opacity=".1"/>
+              <rect x="775" y="140" width="60" height="500" opacity=".08"/>
+              <rect x="850" y="30" width="140" height="610" opacity=".13"/>
+              <g opacity=".08"><rect x="870" y="60" width="8" height="560"/><rect x="900" y="60" width="8" height="560"/><rect x="930" y="60" width="8" height="560"/><rect x="960" y="60" width="8" height="560"/></g>
+              <rect x="1010" y="180" width="90" height="460" opacity=".08"/>
+              <rect x="1110" y="260" width="60" height="380" opacity=".1"/>
+            </g>
+            <g fill="#D9F99D" opacity=".55">
+              <rect x="660" y="120" width="8" height="10"/><rect x="690" y="180" width="8" height="10"/><rect x="720" y="140" width="8" height="10"/><rect x="700" y="260" width="8" height="10"/>
+              <rect x="870" y="90" width="8" height="10"/><rect x="930" y="160" width="8" height="10"/><rect x="960" y="240" width="8" height="10"/><rect x="900" y="320" width="8" height="10"/>
+              <rect x="1030" y="220" width="8" height="10"/><rect x="1060" y="300" width="8" height="10"/><rect x="1130" y="300" width="8" height="10"/><rect x="790" y="200" width="8" height="10"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- LAYER 2: bukit jauh -->
+        <div class="hero__layer" data-hero-layer="0.42">
+          <svg data-depth="0.009" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
+            <defs><linearGradient id="gFar" x1="0" y1="0" x2="0" y2="1"><stop class="h-far-a" offset="0"/><stop class="h-far-b" offset="1"/></linearGradient></defs>
+            <path fill="url(#gFar)" d="M-60 480 C 120 420 260 390 420 430 C 500 450 540 480 620 470 C 760 420 860 300 1000 250 C 1120 210 1300 290 1500 330 L1500 720 L-60 720 Z"/>
+            <path fill="#fff" fill-opacity=".06" d="M900 300 C 960 260 1020 250 1080 262 C 1040 268 990 285 950 320 Z"/>
+            <g class="h-far-line" fill="none" stroke-opacity=".4" stroke-width="3" stroke-linecap="round">
+              <path d="M960 290 C 1000 330 1030 380 1050 440"/><path d="M1010 270 C 1070 320 1120 380 1150 450"/>
+              <path d="M880 350 C 900 400 910 440 920 480"/><path d="M1160 300 C 1220 340 1280 390 1320 450"/>
+              <path d="M300 430 C 340 460 360 490 380 520"/><path d="M180 440 C 210 470 230 500 250 530"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- LAYER 3: bukit dekat -->
+        <div class="hero__layer" data-hero-layer="0.3">
+          <svg data-depth="0.013" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
+            <defs><linearGradient id="gNear" x1="0" y1="0" x2="0" y2="1"><stop class="h-near-a" offset="0"/><stop class="h-near-b" offset="1"/></linearGradient></defs>
+            <path fill="url(#gNear)" d="M-60 580 C 120 500 300 450 480 480 C 580 495 640 540 720 560 C 820 520 960 450 1120 460 C 1260 470 1380 520 1500 540 L1500 780 L-60 780 Z"/>
+            <g class="h-near-line" fill="none" stroke-opacity=".45" stroke-width="3" stroke-linecap="round">
+              <path d="M420 480 C 470 520 500 560 520 610"/><path d="M340 470 C 380 520 400 560 410 610"/>
+              <path d="M1080 470 C 1130 520 1160 570 1180 620"/><path d="M1180 480 C 1240 520 1290 570 1320 620"/>
+            </g>
+            <g fill="#4D7C0F" fill-opacity=".55">
+              <path d="M60 600 C 140 560 240 560 320 590 C 260 610 140 620 60 600 Z"/>
+              <path d="M1160 560 C 1230 530 1320 540 1400 580 C 1320 590 1220 590 1160 560 Z"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- LAYER 4: deretan toko + pin lokasi melayang -->
+        <div class="hero__layer" data-hero-layer="0.24">
+          <svg data-depth="0.015" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
+            <defs>
+              <g id="shop">
+                <ellipse cx="80" cy="3" rx="96" ry="8" fill="#000" opacity=".22"/>
+                <rect x="0" y="-150" width="160" height="150" fill="#DCE3F2"/>
+                <rect x="124" y="-150" width="36" height="150" fill="#B9C5E0"/>
+                <path d="M-8 -150 L168 -150 L158 -172 L2 -172 Z" fill="#0B1B3F"/>
+                <rect x="26" y="-143" width="96" height="22" rx="4" fill="#0B1B3F"/>
+                <rect x="36" y="-135" width="76" height="6" rx="3" fill="#A3E635"/>
+                <g fill="#A3E635"><rect x="0" y="-114" width="20" height="22"/><rect x="40" y="-114" width="20" height="22"/><rect x="80" y="-114" width="20" height="22"/><rect x="120" y="-114" width="20" height="22"/></g>
+                <g fill="#F7FEE7"><rect x="20" y="-114" width="20" height="22"/><rect x="60" y="-114" width="20" height="22"/><rect x="100" y="-114" width="20" height="22"/><rect x="140" y="-114" width="20" height="22"/></g>
+                <g fill="#A3E635"><circle cx="10" cy="-92" r="10"/><circle cx="50" cy="-92" r="10"/><circle cx="90" cy="-92" r="10"/><circle cx="130" cy="-92" r="10"/></g>
+                <g fill="#F7FEE7"><circle cx="30" cy="-92" r="10"/><circle cx="70" cy="-92" r="10"/><circle cx="110" cy="-92" r="10"/><circle cx="150" cy="-92" r="10"/></g>
+                <rect x="16" y="-68" width="70" height="46" rx="3" fill="#ECFCCB"/>
+                <path d="M51 -68 V-22 M16 -45 H86" stroke="#B9C5E0" stroke-width="3"/>
+                <rect x="98" y="-70" width="36" height="70" rx="3" fill="#12275A"/>
+                <circle cx="126" cy="-34" r="2.4" fill="#A3E635"/>
+              </g>
+              <g id="pin">
+                <path d="M0 0 C -12 -16 -20 -26 -20 -38 A20 20 0 1 1 20 -38 C 20 -26 12 -16 0 0 Z" fill="#A3E635"/>
+                <circle cy="-38" r="8" fill="#0B1B3F"/>
+              </g>
+            </defs>
+            <use href="#shop" transform="translate(720 612) scale(1.05)"/>
+            <use href="#shop" transform="translate(905 596) scale(1.3)"/>
+            <use href="#shop" transform="translate(1120 606) scale(1.12)"/>
+            <g transform="translate(810 400)"><g data-float><use href="#pin"/></g></g>
+            <g transform="translate(1010 330) scale(1.25)"><g data-float="slow"><use href="#pin"/></g></g>
+            <g transform="translate(1210 390) scale(.9)"><g data-float><use href="#pin"/></g></g>
+          </svg>
+        </div>
+
+        <!-- LAYER 5: perbukitan -->
+        <div class="hero__layer" data-hero-layer="0.18">
+          <svg data-depth="0.018" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
+            <path class="h-hill-a" d="M-60 660 C 100 590 260 580 400 620 C 480 642 540 665 620 672 C 760 640 900 560 1060 590 C 1180 612 1300 640 1500 650 L1500 820 L-60 820 Z"/>
+            <path class="h-hill-b" d="M-60 700 C 120 660 240 650 380 680 C 440 692 500 705 560 708 L560 820 L-60 820 Z"/>
+            <g fill="#4D7C0F" fill-opacity=".7">
+              <path d="M120 640 C 200 600 300 605 380 640 C 300 655 200 660 120 640 Z"/>
+              <path d="M1220 640 C 1290 615 1380 620 1440 650 C 1380 660 1290 660 1220 640 Z"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- LAYER 6: jalan, rute pengiriman, rumah pembeli -->
+        <div class="hero__layer" data-hero-layer="0.1">
+          <svg data-depth="0.022" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
+            <defs>
+              <linearGradient id="gField" x1="0" y1="0" x2="0" y2="1"><stop class="h-field-a" offset="0"/><stop class="h-field-b" offset="1"/></linearGradient>
+              <g id="house">
+                <ellipse cx="72" cy="4" rx="84" ry="8" fill="#000" opacity=".2"/>
+                <path d="M0 -50 L0 0 L60 8 L60 -42 Z" fill="#B9C5E0"/>
+                <path d="M60 -42 L60 8 L140 -2 L140 -52 Z" fill="#DCE3F2"/>
+                <path d="M0 -50 L60 -42 L140 -52 L80 -62 Z" fill="#0B1B3F"/>
+                <path d="M0 -50 L60 -42 L140 -52" stroke="#A3E635" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                <g fill="#12275A"><rect x="74" y="-34" width="14" height="16"/><rect x="114" y="-38" width="14" height="16"/><rect x="14" y="-38" width="12" height="16"/><rect x="34" y="-34" width="12" height="16"/><rect x="94" y="-24" width="14" height="26"/></g>
+                <g fill="#D9F99D"><rect x="76" y="-32" width="10" height="5"/><rect x="16" y="-36" width="8" height="5"/><rect x="116" y="-36" width="10" height="5"/></g>
+              </g>
+            </defs>
+            <path fill="url(#gField)" d="M-60 720 C 240 672 520 650 800 656 C 1080 662 1260 680 1500 700 L1500 900 L-60 900 Z"/>
+            <path fill="#fff" fill-opacity=".07" d="M-60 720 C 240 672 520 650 800 656 C 1080 662 1260 680 1500 700 L1500 712 C 1260 692 1080 674 800 668 C 520 662 240 684 -60 732 Z"/>
+            <path class="h-band-a" fill-opacity=".85" d="M-60 790 C 300 760 700 776 1500 758 L1500 786 C 700 804 300 800 -60 818 Z"/>
+            <path class="h-band-b" fill-opacity=".5" d="M-60 850 C 400 830 900 846 1500 826 L1500 900 L-60 900 Z"/>
+            <path d="M-60 774 C 300 748 700 764 1500 746" fill="none" stroke="#A3E635" stroke-opacity=".6" stroke-width="2.5" stroke-dasharray="14 12" stroke-linecap="round"/>
+            <g fill="#365314">
+              <ellipse cx="500" cy="702" rx="46" ry="22"/><ellipse cx="540" cy="696" rx="30" ry="18"/>
+              <ellipse cx="1090" cy="690" rx="52" ry="24"/><ellipse cx="1140" cy="696" rx="32" ry="16"/>
+              <ellipse cx="1290" cy="712" rx="40" ry="18"/><ellipse cx="380" cy="722" rx="34" ry="15"/>
+            </g>
+            <g fill="#1F3A0C"><ellipse cx="500" cy="716" rx="52" ry="9"/><ellipse cx="1100" cy="708" rx="62" ry="9"/><ellipse cx="1290" cy="724" rx="44" ry="7"/></g>
+            <use href="#house" transform="translate(545 682) scale(0.75)"/>
+            <use href="#house" transform="translate(660 690) scale(0.85)"/>
+            <use href="#house" transform="translate(880 688) scale(1.05)"/>
+            <use href="#house" transform="translate(1180 700) scale(0.8)"/>
+          </svg>
+        </div>
+
+        <!-- LAYER 7: semak & bunga latar depan -->
+        <div class="hero__layer" data-hero-layer="-0.12">
+          <svg data-depth="0.03" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
+            <defs>
+              <linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop class="h-front-a" offset="0"/><stop class="h-front-b" offset="1"/></linearGradient>
+              <g id="flower">
+                <path d="M0 0 C 2 -30 -4 -50 0 -70" stroke="#4D7C0F" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M0 -40 C -14 -44 -22 -52 -24 -62 C -12 -60 -4 -52 0 -40 Z" fill="#4D7C0F"/>
+                <g transform="translate(0 -74)">
+                  <ellipse rx="10" ry="16" transform="rotate(-30) translate(0 -14)" fill="#EEF2FA"/>
+                  <ellipse rx="10" ry="16" transform="rotate(30) translate(0 -14)" fill="#EEF2FA"/>
+                  <ellipse rx="10" ry="16" transform="rotate(-100) translate(0 -14)" fill="#DCE3F2"/>
+                  <ellipse rx="10" ry="16" transform="rotate(100) translate(0 -14)" fill="#DCE3F2"/>
+                  <circle r="8" fill="#A3E635"/><circle r="4" cy="-2" fill="#D9F99D"/>
+                </g>
+              </g>
+            </defs>
+            <path fill="url(#gFront)" d="M-60 830 C 60 790 160 810 260 780 C 360 750 420 800 520 800 C 640 800 700 750 820 770 C 940 790 980 830 1100 800 C 1200 775 1300 740 1500 780 L1500 900 L-60 900 Z"/>
+            <g class="h-blade-a">
+              <path d="M90 840 C 95 760 110 720 130 690 C 132 740 128 790 118 845 Z"/><path d="M240 830 C 250 760 275 720 300 700 C 292 750 280 800 266 838 Z"/>
+              <path d="M520 830 C 512 770 520 730 545 700 C 552 750 548 790 540 838 Z"/><path d="M690 810 C 700 750 720 720 750 700 C 740 750 725 790 712 820 Z"/>
+              <path d="M1000 830 C 990 770 1000 730 1030 700 C 1035 750 1030 790 1020 838 Z"/><path d="M1220 800 C 1230 740 1250 710 1280 690 C 1270 740 1255 780 1240 812 Z"/>
+              <path d="M1380 830 C 1370 770 1385 730 1410 700 C 1415 750 1410 790 1400 838 Z"/><path d="M-20 850 C -10 780 10 740 40 715 C 32 770 20 810 8 852 Z"/>
+            </g>
+            <g class="h-blade-b">
+              <path d="M160 860 C 165 800 175 770 195 745 C 195 790 190 830 182 862 Z"/><path d="M380 850 C 370 800 380 770 400 745 C 405 790 400 825 395 855 Z"/>
+              <path d="M860 850 C 870 800 890 770 915 750 C 905 795 890 830 878 856 Z"/><path d="M1130 860 C 1120 810 1130 775 1150 750 C 1155 795 1150 830 1142 864 Z"/>
+              <path d="M620 870 C 625 820 640 790 665 770 C 660 815 648 845 638 872 Z"/>
+            </g>
+            <g transform="translate(165 800) scale(1.1)"><g data-sway data-delay="1"><use href="#flower"/></g></g>
+            <g transform="translate(380 880) scale(0.9)"><g data-sway data-delay="3"><use href="#flower"/></g></g>
+            <g transform="translate(870 865)"><g data-sway data-delay="2"><use href="#flower"/></g></g>
+            <g transform="translate(1050 835) scale(0.7)"><g data-sway><use href="#flower"/></g></g>
+            <g transform="translate(1335 855) scale(1.05)"><g data-sway data-delay="4"><use href="#flower"/></g></g>
+            <g fill="#D9F99D" opacity=".9" data-float="slow">
+              <circle cx="215" cy="760" r="3"/><circle cx="238" cy="790" r="2"/><circle cx="130" cy="770" r="2.2"/><circle cx="410" cy="830" r="2.5"/><circle cx="345" cy="855" r="2"/>
+              <circle cx="905" cy="820" r="3"/><circle cx="930" cy="845" r="2"/><circle cx="1010" cy="790" r="2.2"/><circle cx="1090" cy="810" r="2"/><circle cx="1290" cy="800" r="2.5"/><circle cx="1370" cy="815" r="2"/><circle cx="1400" cy="790" r="3"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="hero__particles"><i class="particle"></i><i class="particle"></i><i class="particle"></i><i class="particle"></i><i class="particle"></i><i class="particle"></i></div>
+      </div>
+
+      <div class="container hero__content" data-hero-content>
+        <h1 class="display-xl hero__title" data-split="words" data-intro="title">Buka toko online,<br>jualan di<br>mana saja</h1>
+        <p class="hero__lead" data-intro="lead">Satu dasbor untuk marketplace, landing page toko, dan domain sendiri. Pembeli bisa checkout langsung di halaman tokomu.</p>
+        <div class="hero__cta">
+          <a href="register.html" class="btn btn--primary" data-intro="cta" data-magnetic>Buka toko gratis</a>
+          <a href="#how" class="btn btn--ghost" data-intro="cta" style="color:var(--hero-text)">Lihat cara kerjanya <svg class="btn__icon btn__icon--arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="hero__scroll" data-intro="scroll"><span>Gulir</span><span class="hero__mouse"></span></div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about" data-nav-section="about">
+      <div class="blobs" aria-hidden="true">
+        <div class="blob" style="width:920px;height:920px;left:-320px;top:-420px" data-parallax="0.35"></div>
+        <div class="blob" style="width:540px;height:540px;right:4%;top:-140px" data-parallax="-0.25"></div>
+        <div class="blob" style="width:260px;height:260px;right:30%;top:36%" data-float="slow"></div>
+        <div class="blob blob--ring" style="width:140px;height:140px;left:38%;top:12%" data-float></div>
+      </div>
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow" data-anim="fade-right">Tentang platform</span>
+            <h2 class="display-lg accent" data-split="words">Apa itu Tokora?</h2>
+          </div>
+          <div class="arrows" data-anim="fade-left" data-anim-delay="0.2" role="group" aria-label="Lihat fitur">
+            <button class="arrows__btn arrows__btn--prev" data-feature-prev aria-label="Fitur sebelumnya"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+            <button class="arrows__btn arrows__btn--next" data-feature-next aria-label="Fitur berikutnya"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <p class="about__lead" data-anim="fade-up" data-anim-delay="0.1">Tokora adalah platform toko online tempat siapa pun bisa membuka toko dan menjual lewat tiga kanal sekaligus: marketplace pusat, landing page toko, dan domain milik sendiri. Kamu cukup mengelola produk, stok, dan pesanan di satu dasbor. Hosting, keamanan, pembayaran, dan ongkir sudah kami urus.</p>
+
+        <div class="about__grid" data-stagger="0.12" data-anim="fade-up" data-anim-start="top 80%">
+          <article class="feature-card is-active" data-feature tabindex="0" aria-pressed="true">
+            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"/><path d="M5 13v7h14v-7"/><path d="M10 20v-4h4v4"/></svg></div>
+            <h3 class="feature-card__title">Marketplace<br>Pusat</h3>
+            <div class="feature-card__body"><div>
+              <p class="feature-card__text">Tokomu langsung tampil di pencarian dan kategori Tokora, sehingga pembeli baru bisa menemukan produkmu.</p>
+              <a href="#how" class="link-arrow">Pelajari <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div></div>
+          </article>
+          <article class="feature-card" data-feature tabindex="0" aria-pressed="false">
+            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18"/><path d="M7 12h6M7 16h4"/><rect x="15" y="12" width="3" height="4" fill="currentColor" stroke="none"/></svg></div>
+            <h3 class="feature-card__title">Landing Page<br>Toko</h3>
+            <div class="feature-card__body"><div>
+              <p class="feature-card__text">Desain halaman toko sendiri dengan page builder tanpa kode. Pembeli bisa checkout langsung di halaman itu.</p>
+              <a href="#how" class="link-arrow">Pelajari <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div></div>
+          </article>
+          <article class="feature-card" data-feature tabindex="0" aria-pressed="false">
+            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+            <h3 class="feature-card__title">Domain<br>Sendiri</h3>
+            <div class="feature-card__body"><div>
+              <p class="feature-card__text">Beli domain seperti namatoko.com langsung dari dasbor. SSL aktif otomatis, hosting dan checkout tetap kami yang jalankan.</p>
+              <a href="#faq" class="link-arrow">Pelajari <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div></div>
+          </article>
+          <aside class="about__side">
+            <h3 class="display-md">Kenapa<br>Tokora</h3>
+            <ul class="keypoints">
+              <li>Satu stok dan pesanan untuk semua kanal</li>
+              <li>Checkout tamu, tanpa wajib daftar</li>
+              <li>Pembayaran aman via Midtrans</li>
+            </ul>
+            <button class="btn btn--outline" data-video="" data-magnetic>Tonton video <svg class="btn__icon btn__icon--play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATS ============ -->
+    <section class="section section--tight stats">
+      <div class="container">
+        <div class="stats__grid" data-stagger="0.12" data-anim="fade-up">
+          <div class="stat" data-scroll-class="is-inview" data-anim-once="true"><div class="stat__value" data-counter="3">0</div><p class="stat__label">Kanal penjualan dari satu dasbor</p></div>
+          <div class="stat" data-scroll-class="is-inview" data-anim-once="true"><div class="stat__value" data-counter="15" data-counter-suffix=" mnt">0</div><p class="stat__label">Dari daftar sampai toko siap jualan</p></div>
+          <div class="stat" data-scroll-class="is-inview" data-anim-once="true"><div class="stat__value" data-counter="6" data-counter-suffix="+">0</div><p class="stat__label">Template landing page siap pakai</p></div>
+          <div class="stat" data-scroll-class="is-inview" data-anim-once="true"><div class="stat__value" data-counter="30" data-counter-suffix=" mnt">0</div><p class="stat__label">Domain baru aktif lengkap dengan SSL</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="section how" id="how">
+      <div class="blobs" aria-hidden="true">
+        <div class="blob" style="width:700px;height:700px;right:-260px;bottom:-300px" data-parallax="0.3"></div>
+      </div>
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow" data-anim="fade-right">Cara kerja</span>
+            <h2 class="display-lg" data-split="words">Tiga langkah mulai<br><span class="accent">berjualan</span></h2>
+          </div>
+          <p class="lead measure-sm" data-anim="fade-up">Dari unggah produk pertama sampai dana masuk ke rekening, semuanya berjalan di satu tempat.</p>
+        </div>
+        <div class="steps" data-draw-container>
+          <div class="steps__line" aria-hidden="true">
+            <svg viewBox="0 0 1000 60" preserveAspectRatio="none" data-draw data-anim-scrub data-anim-start="top 75%" data-anim-end="bottom 40%">
+              <path d="M40 30 C 200 -10 300 70 500 30 C 700 -10 800 70 960 30"/>
+              <path class="steps__line-glow" d="M40 30 C 200 -10 300 70 500 30 C 700 -10 800 70 960 30" stroke-opacity=".9"/>
+            </svg>
+          </div>
+          <div class="step" data-anim="fade-up">
+            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"/><path d="M5 13v7h14v-7"/></svg></div>
+            <span class="step__num">1</span>
+            <h3 class="step__title">Buka toko</h3>
+            <p class="step__text">Daftar gratis, isi nama toko, lalu unggah produk beserta foto, varian, dan stoknya.</p>
+          </div>
+          <div class="step" data-anim="fade-up" data-anim-delay="0.15">
+            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18M9 8v12"/></svg></div>
+            <span class="step__num">2</span>
+            <h3 class="step__title">Desain halaman</h3>
+            <p class="step__text">Pilih template, atur blok, lalu terbitkan ke subdomain Tokora atau ke domain milikmu sendiri.</p>
+          </div>
+          <div class="step" data-anim="fade-up" data-anim-delay="0.3">
+            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
+            <span class="step__num">3</span>
+            <h3 class="step__title">Terima pesanan</h3>
+            <p class="step__text">Pembeli bayar lewat QRIS, VA, atau e-wallet dengan ongkir otomatis. Dana masuk ke saldo setelah pesanan selesai.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ APPS / FITUR ============ -->
+    <section class="section apps" id="apps" data-nav-section="apps">
+      <div class="blobs" aria-hidden="true">
+        <div class="blob" style="width:600px;height:600px;left:-200px;top:20%" data-parallax="0.25"></div>
+      </div>
+      <div class="container apps__grid">
+        <div>
+          <span class="eyebrow" data-anim="fade-right">Fitur</span>
+          <h2 class="display-lg" data-split="words">Semua urusan toko,<br>di satu dasbor</h2>
+          <p class="lead mt-6" data-anim="fade-up">Pantau pesanan dari marketplace, landing page, dan domainmu sekaligus. Dasbornya nyaman dibuka di laptop maupun ponsel.</p>
+          <ul class="apps__list" data-stagger="0.12" data-anim="fade-up">
+            <li class="apps__item"><div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg></div><div><h4>Pesanan terpadu</h4><p>Semua pesanan di satu daftar, lengkap dengan label kanal asalnya.</p></div></li>
+            <li class="apps__item"><div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/></svg></div><div><h4>Page builder tanpa kode</h4><p>Hero, grid produk, testimoni, dan FAQ tinggal disusun, lalu terbit.</p></div></li>
+            <li class="apps__item"><div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div><div><h4>Pembayaran dan ongkir otomatis</h4><p>Pembayaran via Midtrans, ongkir real-time dari banyak kurir, dan resi terlacak.</p></div></li>
+          </ul>
+          <div class="apps__store" data-stagger="0.1" data-anim="zoom-in">
+            <a href="register.html" class="btn btn--primary" data-magnetic>Coba dasbor gratis</a>
+            <a href="#plans" class="btn btn--outline" data-magnetic>Lihat paket</a>
+          </div>
+        </div>
+        <div class="device-wrap" data-anim="zoom-in" data-anim-duration="1.1">
+          <div class="device-wrap__glow" data-breathe></div>
+          <div class="device-wrap__ring" data-spin aria-hidden="true"></div>
+          <div class="device-wrap__ring device-wrap__ring--2" aria-hidden="true"></div>
+          <div class="device" data-tilt="10">
+            <div class="device__notch"></div>
+            <div class="device__screen">
+              <div class="device__greet"><small>Selamat pagi, Sari</small><strong>Glow Skincare</strong></div>
+              <div class="device__kpi"><small>Pesanan hari ini</small><b><span data-counter="38">0</span> pesanan</b><span>▲ 12% dari kemarin</span></div>
+              <div class="device__chart" data-stagger="0.06" data-anim="grow-up" data-anim-duration="0.9">
+                <i class="device__bar" style="height:45%"></i><i class="device__bar" style="height:70%"></i><i class="device__bar" style="height:55%"></i><i class="device__bar" style="height:90%"></i><i class="device__bar" style="height:65%"></i><i class="device__bar" style="height:80%"></i><i class="device__bar" style="height:100%"></i>
+              </div>
+              <div class="device__nav"><span></span><span></span><span></span><span></span></div>
+            </div>
+          </div>
+          <div class="float-card float-card--1" data-float data-anim="fade-right" data-anim-delay="0.5">
+            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/></svg></div>
+            <div><b>+Rp 250rb</b><small>pesanan via landing page</small></div>
+          </div>
+          <div class="float-card float-card--2" data-float="slow" data-anim="fade-left" data-anim-delay="0.7">
+            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+            <div><b>namatoko.com</b><small>SSL aktif</small></div>
+          </div>
+          <div class="float-card float-card--3" data-float="rotate" data-anim="fade-right" data-anim-delay="0.9">
+            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h4l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg></div>
+            <div><b>3 kanal</b><small>satu stok</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PLANS ============ -->
+    <section class="section plans" id="plans" data-nav-section="plans">
+      <div class="blobs" aria-hidden="true">
+        <div class="blob" style="width:800px;height:800px;right:-300px;top:-200px" data-parallax="0.3"></div>
+        <div class="blob blob--ring" style="width:220px;height:220px;left:6%;bottom:10%" data-float="slow"></div>
+      </div>
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow" data-anim="fade-right">Paket</span>
+            <h2 class="display-lg" data-split="words">Harga jelas untuk<br>setiap <span class="accent">toko</span></h2>
+          </div>
+          <div class="plans__toggle" data-anim="fade-left" data-billing>
+            <span class="plans__thumb" data-billing-thumb></span>
+            <button class="is-active" data-billing-btn="monthly">Bulanan</button>
+            <button data-billing-btn="yearly">Tahunan</button>
+            <span class="badge badge--success">−20%</span>
+          </div>
+        </div>
+        <div class="plans__grid" data-stagger="0.15" data-anim="fade-up">
+          <article class="plan">
+            <div class="plan__head"><div><h3 class="plan__name">Gratis</h3><p class="plan__desc">Untuk mulai berjualan</p></div><span class="badge">Rp 0</span></div>
+            <div class="plan__price"><b data-price data-monthly="0" data-yearly="0">Rp 0</b><span>/ bulan</span></div>
+            <ul class="plan__list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Toko di marketplace, 50 produk</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>1 landing page di subdomain</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Checkout, ongkir, dan pembayaran</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Komisi 5% per transaksi</li>
+            </ul>
+            <a href="register.html" class="btn btn--outline">Buka toko gratis</a>
+          </article>
+          <article class="plan plan--featured" data-tilt="4">
+            <div class="plan__head"><div><h3 class="plan__name">Pro</h3><p class="plan__desc">Untuk toko yang berkembang</p></div><span class="badge badge--accent">Populer</span></div>
+            <div class="plan__price"><b data-price data-monthly="99000" data-yearly="79000">Rp 99.000</b><span>/ bulan</span></div>
+            <ul class="plan__list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Produk tak terbatas, 3 staf</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>5 landing page tanpa badge</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Custom domain milikmu sendiri</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Voucher dan pixel iklan</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Komisi 3% per transaksi</li>
+            </ul>
+            <a href="register.html" class="btn btn--accent" data-magnetic>Pilih Pro</a>
+          </article>
+          <article class="plan">
+            <div class="plan__head"><div><h3 class="plan__name">Bisnis</h3><p class="plan__desc">Untuk brand yang serius</p></div></div>
+            <div class="plan__price"><b data-price data-monthly="299000" data-yearly="239000">Rp 299.000</b><span>/ bulan</span></div>
+            <ul class="plan__list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Semua fitur Pro, 10 staf</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Gratis 1 domain tahun pertama</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Landing page tak terbatas + A/B test</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>API dan laporan lanjutan</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Komisi 2% per transaksi</li>
+            </ul>
+            <a href="#contacts" class="btn btn--outline">Hubungi tim kami</a>
+          </article>
+        </div>
+        <p class="small muted mt-6" data-anim="fade-up">Sewa domain dibayar terpisah per tahun. Biaya payment gateway mengikuti tarif Midtrans untuk tiap metode bayar.</p>
+      </div>
+    </section>
+
+    <!-- ============ PROGRAM MITRA ============ -->
+    <section class="section plans mitra" id="mitra" data-nav-section="mitra">
+      <div class="blobs" aria-hidden="true">
+        <div class="blob" style="width:700px;height:700px;left:-260px;top:-160px" data-parallax="0.25"></div>
+      </div>
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow" data-anim="fade-right">Program mitra</span>
+            <h2 class="display-lg" data-split="words">Tidak punya produk?<br>Jualkan dan dapat <span class="accent">komisi</span></h2>
+          </div>
+          <p class="lead measure-sm" data-anim="fade-up">Seller membuka produknya untuk mitra dan menentukan komisinya sendiri. Semua pesanan lewat checkout Tokora, jadi komisi tercatat otomatis dan cair setelah pesanan selesai.</p>
+        </div>
+        <div class="plans__grid" data-stagger="0.15" data-anim="fade-up">
+          <article class="plan">
+            <div class="plan__head"><div><h3 class="plan__name">Kreator landing page</h3><p class="plan__desc">Untuk yang jago bikin halaman jualan</p></div><span class="badge">Mitra</span></div>
+            <ul class="plan__list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Pilih produk dari Katalog Affiliate</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Buat landing page tanpa kode, harga dan stok ikut seller</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Pembeli checkout langsung di halamanmu</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Komisi dari setiap pesanan yang selesai</li>
+            </ul>
+            <a href="register.html?role=mitra" class="btn btn--outline">Daftar jadi kreator</a>
+          </article>
+          <article class="plan plan--featured" data-tilt="4">
+            <div class="plan__head"><div><h3 class="plan__name">Closer (bantu checkout)</h3><p class="plan__desc">Untuk admin WA, CS, dan reseller</p></div><span class="badge badge--accent">Baru</span></div>
+            <ul class="plan__list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Buat pesanan untuk pembeli dari WhatsApp, Instagram, atau TikTok</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>COD atau transfer lewat link bayar resmi</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Rincian tagihan siap kirim ke WhatsApp dengan satu tombol</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Tidak perlu cek bukti transfer, pembayaran terkonfirmasi otomatis</li>
+            </ul>
+            <a href="register.html?role=mitra" class="btn btn--accent" data-magnetic>Daftar jadi closer</a>
+          </article>
+          <article class="plan">
+            <div class="plan__head"><div><h3 class="plan__name">Iklan produk</h3><p class="plan__desc">Untuk seller yang ingin lebih cepat laku</p></div><span class="badge">Seller</span></div>
+            <ul class="plan__list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Produk tampil di posisi teratas pencarian marketplace</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Bayar per klik, anggaran harian bisa diatur</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Laporan tayangan, klik, pesanan, dan ROAS</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Klik tidak valid tidak ditagih</li>
+            </ul>
+            <a href="register.html" class="btn btn--outline">Mulai beriklan</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <!-- CONTOH testimoni — ganti dengan testimoni seller asli sebelum situs dirilis. -->
+    <section class="section section--tight testi">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow" data-anim="fade-right">Kata seller</span>
+            <h2 class="display-lg" data-split="words">Dipercaya <span class="accent">UMKM</span></h2>
+          </div>
+        </div>
+      </div>
+      <div class="marquee" data-marquee data-marquee-speed="45" data-marquee-scrub data-anim="fade">
+        <div class="marquee__track">
+          <article class="quote"><div class="quote__stars">★★★★★</div><p class="quote__text">"Dulu pesanan dicatat manual dari WhatsApp. Sekarang semua masuk ke satu dasbor, stoknya ikut terpotong otomatis."</p><div class="quote__who"><span class="avatar">BS</span><div>Budi Santoso<small>Keripik Pedas, Malang</small></div></div></article>
+          <article class="quote"><div class="quote__stars">★★★★★</div><p class="quote__text">"Landing page untuk iklan jadi dalam sore hari. Pembeli checkout di halaman itu juga, tidak perlu pindah aplikasi."</p><div class="quote__who"><span class="avatar" style="background:var(--c-lime-300)">SR</span><div>Sari Rahma<small>Glow Skincare, Bandung</small></div></div></article>
+          <article class="quote"><div class="quote__stars">★★★★★</div><p class="quote__text">"Beli domain langsung dari dasbor, beberapa menit kemudian sudah aktif pakai gembok hijau. Tidak perlu urus hosting."</p><div class="quote__who"><span class="avatar" style="background:var(--c-navy-100)">DP</span><div>Dimas Pratama<small>Kaos Lokal, Yogyakarta</small></div></div></article>
+          <article class="quote"><div class="quote__stars">★★★★★</div><p class="quote__text">"QRIS dan VA langsung jalan. Dana masuk ke saldo, lalu tinggal tarik ke rekening."</p><div class="quote__who"><span class="avatar" style="background:var(--c-lime-200)">NA</span><div>Nur Aini<small>Hijab Store, Makassar</small></div></div></article>
+        </div>
+      </div>
+      <div class="marquee" data-marquee data-marquee-speed="35" data-marquee-direction="right" data-anim="fade" data-anim-delay="0.2">
+        <div class="marquee__track">
+          <article class="quote"><div class="quote__stars">★★★★★</div><p class="quote__text">"Stafku bisa proses pesanan dan cetak resi tanpa melihat saldo toko. Pembagian aksesnya pas."</p><div class="quote__who"><span class="avatar" style="background:var(--c-navy-100)">AH</span><div>Andi Hakim<small>Sepatu Kulit, Surabaya</small></div></div></article>
+          <article class="quote"><div class="quote__stars">★★★★★</div><p class="quote__text">"Pixel iklan tinggal tempel ID-nya. Sekarang kelihatan iklan mana yang benar-benar menghasilkan pesanan."</p><div class="quote__who"><span class="avatar">RW</span><div>Rina Wulandari<small>Kopi Susu Botol, Jakarta</small></div></div></article>
+          <article class="quote"><div class="quote__stars">★★★★★</div><p class="quote__text">"Pembeli dari marketplace sering mampir lagi ke website kami sendiri. Dua-duanya tetap satu stok."</p><div class="quote__who"><span class="avatar" style="background:var(--c-lime-300)">YK</span><div>Yoga Kurniawan<small>Tanaman Hias, Bogor</small></div></div></article>
+          <article class="quote"><div class="quote__stars">★★★★★</div><p class="quote__text">"Mulai dari paket gratis, naik ke Pro setelah pesanan ramai. Pindahnya tidak ribet sama sekali."</p><div class="quote__who"><span class="avatar" style="background:var(--c-lime-200)">MF</span><div>Maya Fitri<small>Kue Kering, Medan</small></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section faq" id="faq" data-nav-section="faq">
+      <div class="container faq__grid">
+        <div class="faq__intro">
+          <span class="eyebrow" data-anim="fade-right">FAQ</span>
+          <h2 class="display-lg" data-split="words">Pertanyaan,<br><span class="accent">terjawab</span></h2>
+          <p class="lead" data-anim="fade-up">Belum menemukan jawabannya? Tim kami membalas dalam satu hari kerja.</p>
+          <a href="#contacts" class="btn btn--primary" data-anim="pop" data-magnetic>Tanya kami</a>
+        </div>
+        <div class="acc" data-stagger="0.08" data-anim="fade-up" data-accordion>
+          <div class="acc__item is-open">
+            <button class="acc__btn" aria-expanded="true">Apakah saya harus punya website sendiri?<span class="acc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+            <div class="acc__panel"><p>Tidak. Begitu toko dibuat, tokomu langsung aktif di marketplace Tokora dan mendapat landing page gratis di subdomain, misalnya namatoko.tokora.id.</p></div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__btn" aria-expanded="false">Bisakah pembeli checkout langsung di landing page saya?<span class="acc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+            <div class="acc__panel"><p>Bisa. Pembeli memilih varian, mengisi alamat, dan membayar di halaman yang sama, bahkan tanpa membuat akun. Pesanannya masuk ke dasbormu dengan label kanal asal.</p></div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__btn" aria-expanded="false">Bagaimana cara memakai domain sendiri?<span class="acc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+            <div class="acc__panel"><p>Beli domain langsung dari dasbor. Sewanya dibayar per tahun, lalu DNS dan SSL diatur otomatis. Hosting, checkout, dan keamanannya tetap kami yang jalankan, dan domain itu terdaftar atas namamu.</p></div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__btn" aria-expanded="false">Metode pembayaran apa saja yang tersedia?<span class="acc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+            <div class="acc__panel"><p>Semua pembayaran diproses lewat Midtrans: QRIS, virtual account bank, e-wallet, dan kartu kredit. COD juga tersedia dan bisa kamu matikan kapan saja.</p></div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__btn" aria-expanded="false">Berapa biaya yang saya bayar?<span class="acc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+            <div class="acc__panel"><p>Biayanya terdiri dari langganan paket (mulai Rp 0), komisi per transaksi sesuai paket, dan biaya payment gateway sesuai tarif Midtrans. Sewa domain dibayar terpisah per tahun.</p></div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__btn" aria-expanded="false">Bagaimana kalau saya berhenti berlangganan?<span class="acc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+            <div class="acc__panel"><p>Domainmu tetap milikmu dan bisa ditransfer ke penyedia lain. Data produk dan pesanan juga bisa diekspor kapan saja.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contacts" data-nav-section="contacts">
+      <div class="blobs" aria-hidden="true">
+        <div class="blob" style="width:760px;height:760px;left:-280px;bottom:-360px" data-parallax="0.3"></div>
+        <div class="blob" style="width:380px;height:380px;right:-80px;top:-100px" data-parallax="-0.2"></div>
+      </div>
+      <div class="container contact__grid">
+        <div class="contact__info">
+          <span class="eyebrow" data-anim="fade-right">Kontak</span>
+          <h2 class="display-lg" data-split="words">Ayo mulai<br><span class="accent">berjualan</span></h2>
+          <p class="lead" data-anim="fade-up">Ceritakan usahamu, nanti kami bantu memilih paket dan menyiapkan toko pertamamu.</p>
+          <div class="stack" data-stagger="0.1" data-anim="fade-up">
+            <div class="contact__row"><div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg></div><div><small>Email</small><a href="mailto:halo@tokora.id" class="link-draw">halo@tokora.id</a></div></div>
+            <div class="contact__row"><div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div><div><small>WhatsApp</small><a href="#" class="link-draw">+62 812-0000-0000</a></div></div>
+            <div class="contact__row"><div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><small>Kantor</small><span>Jakarta, Indonesia</span></div></div>
+          </div>
+          <div class="socials" data-stagger="0.08" data-anim="pop">
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+            <a href="#" aria-label="X / Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 3h3l-7.3 8.3L21.8 21h-6.6l-4.6-6-5.3 6H2.2l7.8-8.9L1.8 3h6.8l4.2 5.5L17.5 3zm-1.1 16.3h1.7L7 4.7H5.2l11.2 14.6z"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 8.5H3.5V21h3V8.5zM5 3.5a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM21 13.3c0-3.2-1.7-4.9-4.3-4.9-1.6 0-2.6.8-3.1 1.6V8.5H10.7V21h3v-6.2c0-1.6.6-2.7 2.1-2.7 1.4 0 2 1 2 2.7V21h3v-7.7z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.2c-.2-1.4-1-2.3-2.4-2.5C17.6 5.4 12 5.4 12 5.4s-5.6 0-7.6.3C3 5.9 2.2 6.8 2 8.2 1.8 9.6 1.8 12 1.8 12s0 2.4.2 3.8c.2 1.4 1 2.3 2.4 2.5 2 .3 7.6.3 7.6.3s5.6 0 7.6-.3c1.4-.2 2.2-1.1 2.4-2.5.2-1.4.2-3.8.2-3.8s0-2.4-.2-3.8zM10 15V9l5 3-5 3z"/></svg></a>
+          </div>
+        </div>
+        <form class="form" data-form data-anim="fade-left" data-anim-duration="1" novalidate>
+          <div class="form__row">
+            <div class="field"><label for="f-name">Nama</label><input class="input" id="f-name" name="name" type="text" placeholder="Nama kamu" required></div>
+            <div class="field"><label for="f-email">Email</label><input class="input" id="f-email" name="email" type="email" placeholder="kamu@tokomu.com" required></div>
+          </div>
+          <div class="form__row">
+            <div class="field"><label for="f-size">Jenis usaha</label><select class="input" id="f-size" name="business"><option>Fashion</option><option>Makanan dan minuman</option><option>Kecantikan</option><option>Produk digital</option><option>Lainnya</option></select></div>
+            <div class="field"><label for="f-country">Kota</label><input class="input" id="f-country" name="city" type="text" placeholder="Bandung"></div>
+          </div>
+          <div class="field"><label for="f-msg">Pesan</label><textarea class="input" id="f-msg" name="message" placeholder="Ceritakan tentang tokomu…"></textarea></div>
+          <div class="row row--wrap">
+            <button type="submit" class="btn btn--primary" data-magnetic><span data-form-label>Kirim pesan</span> <svg class="btn__icon btn__icon--arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            <p class="form__success"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg> Terima kasih! Kami akan menghubungimu dalam satu hari kerja.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid" data-stagger="0.1" data-anim="fade-up">
+        <div>
+          <a href="#top" class="brand"><svg class="brand__mark" viewBox="0 0 40 40" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="20" r="18"/><path d="M13 16h14l-1.6 12.5a1.5 1.5 0 0 1-1.5 1.3h-7.8a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M16.5 16v-1.5a3.5 3.5 0 0 1 7 0V16"/></svg><span>TOKORA</span></a>
+          <p class="footer__desc">Platform toko online untuk UMKM Indonesia: marketplace, landing page, dan domain sendiri dalam satu dasbor.</p>
+        </div>
+        <div><h4>Platform</h4><div class="footer__links"><a href="#about">Tentang</a><a href="#how">Cara kerja</a><a href="#apps">Fitur</a><a href="#plans">Paket</a><a href="#mitra">Program mitra</a></div></div>
+        <div><h4>Perusahaan</h4><div class="footer__links"><a href="#">Karier</a><a href="#">Mitra</a><a href="#">Blog</a><a href="#">Syarat dan ketentuan</a></div></div>
+        <div><h4>Bantuan</h4><div class="footer__links"><a href="#faq">FAQ</a><a href="#contacts">Kontak</a><a href="login.html">Masuk</a><a href="register.html">Daftar</a><a href="styleguide.html">Style guide</a></div></div>
+      </div>
+      <div class="footer__word" data-anim="clip-up" data-anim-duration="1.2" aria-hidden="true">TOKORA</div>
+      <div class="footer__bottom" data-anim="fade">
+        <span>© 2026 Tokora. Hak cipta dilindungi.</span>
+        <span>Dibuat untuk UMKM Indonesia</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ FLOATING CONTROLS ============ -->
+  <div class="controls">
+    <button class="control control--theme" data-theme-toggle aria-label="Ganti tema terang / gelap" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
+    </button>
+  </div>
+  <button class="to-top" data-to-top aria-label="Kembali ke atas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+  <!-- ============ VIDEO MODAL ============ -->
+  <div class="modal" data-modal aria-hidden="true" role="dialog" aria-label="Video">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__dialog">
+      <button class="modal__close" data-modal-close aria-label="Tutup"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <div data-modal-body style="width:100%;height:100%;display:grid;place-items:center;text-align:center;padding:2rem;gap:1rem;color:var(--text-2)">
+        <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" data-spin="fast"><path d="M12 12V3M12 12l7.8 4.5M12 12l-7.8 4.5"/><circle cx="12" cy="12" r="1.5" fill="var(--accent)"/></svg>
+        <p>Video segera hadir.<br><span class="small muted">Isi atribut <code class="tag">data-video</code> pada tombol "Tonton video" dengan URL embed (YouTube / Vimeo).</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GSAP + ScrollTrigger (pin versi) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

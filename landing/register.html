@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar — Tokora</title>
+  <meta name="theme-color" content="#F7F8FA">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <script>try{var t=localStorage.getItem('tokora-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body>
+  <a class="skip-link" href="#auth-form">Langsung ke formulir</a>
+  <div class="cursor" data-cursor aria-hidden="true"></div>
+
+  <main class="auth">
+    <!-- ============ PANEL ILUSTRASI ============ -->
+    <aside class="auth__visual" data-mouse-parallax="1" aria-hidden="true">
+      <div class="auth__scene">
+        <div class="auth__sun" data-depth="0.006"></div>
+        <div class="cloud cloud--1"></div><div class="cloud cloud--2"></div><div class="cloud cloud--3"></div>
+
+        <!-- Layer 1: bintang, siluet kota, bukit jauh (berisi defs bersama) -->
+        <div class="auth__layer" data-auth-layer>
+          <svg data-depth="0.006" viewBox="0 0 720 900" preserveAspectRatio="xMidYMax slice">
+            <defs>
+              <linearGradient id="aFar" x1="0" y1="0" x2="0" y2="1"><stop class="h-far-a" offset="0"/><stop class="h-far-b" offset="1"/></linearGradient>
+              <linearGradient id="aNear" x1="0" y1="0" x2="0" y2="1"><stop class="h-near-a" offset="0"/><stop class="h-near-b" offset="1"/></linearGradient>
+              <linearGradient id="aField" x1="0" y1="0" x2="0" y2="1"><stop class="h-field-a" offset="0"/><stop class="h-field-b" offset="1"/></linearGradient>
+              <linearGradient id="aFront" x1="0" y1="0" x2="0" y2="1"><stop class="h-front-a" offset="0"/><stop class="h-front-b" offset="1"/></linearGradient>
+              <g id="shop">
+                <ellipse cx="80" cy="3" rx="96" ry="8" fill="#000" opacity=".22"/>
+                <rect x="0" y="-150" width="160" height="150" fill="#DCE3F2"/>
+                <rect x="124" y="-150" width="36" height="150" fill="#B9C5E0"/>
+                <path d="M-8 -150 L168 -150 L158 -172 L2 -172 Z" fill="#0B1B3F"/>
+                <rect x="26" y="-143" width="96" height="22" rx="4" fill="#0B1B3F"/>
+                <rect x="36" y="-135" width="76" height="6" rx="3" fill="#A3E635"/>
+                <g fill="#A3E635"><rect x="0" y="-114" width="20" height="22"/><rect x="40" y="-114" width="20" height="22"/><rect x="80" y="-114" width="20" height="22"/><rect x="120" y="-114" width="20" height="22"/></g>
+                <g fill="#F7FEE7"><rect x="20" y="-114" width="20" height="22"/><rect x="60" y="-114" width="20" height="22"/><rect x="100" y="-114" width="20" height="22"/><rect x="140" y="-114" width="20" height="22"/></g>
+                <g fill="#A3E635"><circle cx="10" cy="-92" r="10"/><circle cx="50" cy="-92" r="10"/><circle cx="90" cy="-92" r="10"/><circle cx="130" cy="-92" r="10"/></g>
+                <g fill="#F7FEE7"><circle cx="30" cy="-92" r="10"/><circle cx="70" cy="-92" r="10"/><circle cx="110" cy="-92" r="10"/><circle cx="150" cy="-92" r="10"/></g>
+                <rect x="16" y="-68" width="70" height="46" rx="3" fill="#ECFCCB"/>
+                <path d="M51 -68 V-22 M16 -45 H86" stroke="#B9C5E0" stroke-width="3"/>
+                <rect x="98" y="-70" width="36" height="70" rx="3" fill="#12275A"/>
+                <circle cx="126" cy="-34" r="2.4" fill="#A3E635"/>
+              </g>
+              <g id="pin">
+                <path d="M0 0 C -12 -16 -20 -26 -20 -38 A20 20 0 1 1 20 -38 C 20 -26 12 -16 0 0 Z" fill="#A3E635"/>
+                <circle cy="-38" r="8" fill="#0B1B3F"/>
+              </g>
+              <g id="house">
+                <ellipse cx="72" cy="4" rx="84" ry="8" fill="#000" opacity=".2"/>
+                <path d="M0 -50 L0 0 L60 8 L60 -42 Z" fill="#B9C5E0"/><path d="M60 -42 L60 8 L140 -2 L140 -52 Z" fill="#DCE3F2"/>
+                <path d="M0 -50 L60 -42 L140 -52 L80 -62 Z" fill="#0B1B3F"/>
+                <path d="M0 -50 L60 -42 L140 -52" stroke="#A3E635" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                <g fill="#12275A"><rect x="74" y="-34" width="14" height="16"/><rect x="114" y="-38" width="14" height="16"/><rect x="14" y="-38" width="12" height="16"/><rect x="34" y="-34" width="12" height="16"/><rect x="94" y="-24" width="14" height="26"/></g>
+                <g fill="#D9F99D"><rect x="76" y="-32" width="10" height="5"/><rect x="16" y="-36" width="8" height="5"/><rect x="116" y="-36" width="10" height="5"/></g>
+              </g>
+              <g id="flower">
+                <path d="M0 0 C 2 -30 -4 -50 0 -70" stroke="#4D7C0F" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M0 -40 C -14 -44 -22 -52 -24 -62 C -12 -60 -4 -52 0 -40 Z" fill="#4D7C0F"/>
+                <g transform="translate(0 -74)"><ellipse rx="10" ry="16" transform="rotate(-30) translate(0 -14)" fill="#EEF2FA"/><ellipse rx="10" ry="16" transform="rotate(30) translate(0 -14)" fill="#EEF2FA"/><ellipse rx="10" ry="16" transform="rotate(-100) translate(0 -14)" fill="#DCE3F2"/><ellipse rx="10" ry="16" transform="rotate(100) translate(0 -14)" fill="#DCE3F2"/><circle r="8" fill="#A3E635"/><circle r="4" cy="-2" fill="#D9F99D"/></g>
+              </g>
+            </defs>
+            <g class="hero-stars" fill="#fff">
+              <circle cx="60" cy="80" r="1.5" opacity=".7"/><circle cx="170" cy="150" r="1.2" opacity=".5"/><circle cx="260" cy="60" r="1.7" opacity=".8"/>
+              <circle cx="340" cy="210" r="1.1" opacity=".5"/><circle cx="590" cy="90" r="1.6" opacity=".7"/><circle cx="680" cy="190" r="1.2" opacity=".5"/>
+            </g>
+            <g class="hero-city">
+              <rect x="380" y="120" width="70" height="420" opacity=".1"/><rect x="460" y="60" width="90" height="480" opacity=".13"/><rect x="480" y="30" width="20" height="30" opacity=".13"/>
+              <rect x="560" y="200" width="50" height="340" opacity=".08"/><rect x="620" y="260" width="70" height="280" opacity=".1"/>
+            </g>
+            <g fill="#D9F99D" opacity=".55">
+              <rect x="400" y="170" width="8" height="10"/><rect x="425" y="250" width="8" height="10"/><rect x="480" y="110" width="8" height="10"/><rect x="520" y="200" width="8" height="10"/>
+              <rect x="500" y="300" width="8" height="10"/><rect x="575" y="260" width="8" height="10"/><rect x="640" y="310" width="8" height="10"/>
+            </g>
+            <path fill="url(#aFar)" d="M-60 520 C 80 440 200 400 320 430 C 420 455 470 380 560 330 C 640 290 700 330 780 350 L780 720 L-60 720 Z"/>
+            <g class="h-far-line" fill="none" stroke-opacity=".4" stroke-width="3" stroke-linecap="round"><path d="M540 360 C 570 400 590 440 600 490"/><path d="M600 340 C 640 380 670 430 690 480"/><path d="M180 440 C 210 470 230 500 250 530"/></g>
+          </svg>
+        </div>
+        <!-- Layer 2: bukit dekat -->
+        <div class="auth__layer" data-auth-layer>
+          <svg data-depth="0.011" viewBox="0 0 720 900" preserveAspectRatio="xMidYMax slice">
+            <path fill="url(#aNear)" d="M-60 600 C 60 520 180 480 300 520 C 380 546 440 560 520 530 C 620 490 700 520 780 560 L780 780 L-60 780 Z"/>
+            <g class="h-near-line" fill="none" stroke-opacity=".45" stroke-width="3" stroke-linecap="round"><path d="M240 520 C 280 560 300 600 310 640"/><path d="M160 520 C 200 560 220 600 230 640"/><path d="M560 530 C 600 570 630 610 650 650"/></g>
+            <path fill="#4D7C0F" fill-opacity=".55" d="M540 600 C 600 570 680 580 740 610 C 680 622 600 624 540 600 Z"/>
+          </svg>
+        </div>
+        <!-- Layer 3: deretan toko + pin lokasi -->
+        <div class="auth__layer" data-auth-layer>
+          <svg data-depth="0.014" viewBox="0 0 720 900" preserveAspectRatio="xMidYMax slice">
+            <use href="#shop" transform="translate(250 668) scale(1.15)"/>
+            <use href="#shop" transform="translate(462 652) scale(1.3)"/>
+            <g transform="translate(330 505) scale(.85)"><g data-float><use href="#pin"/></g></g>
+            <g transform="translate(580 500) scale(.9)"><g data-float="slow"><use href="#pin"/></g></g>
+          </svg>
+        </div>
+        <!-- Layer 4: bukit, jalan, rute pengiriman, rumah pembeli -->
+        <div class="auth__layer" data-auth-layer>
+          <svg data-depth="0.019" viewBox="0 0 720 900" preserveAspectRatio="xMidYMax slice">
+            <path class="h-hill-a" d="M-60 680 C 100 620 220 620 340 660 C 440 690 560 620 780 660 L780 820 L-60 820 Z"/>
+            <path fill="#4D7C0F" fill-opacity=".7" d="M60 660 C 130 625 220 630 290 662 C 220 676 130 678 60 660 Z"/>
+            <path fill="url(#aField)" d="M-60 740 C 200 700 480 690 780 720 L780 900 L-60 900 Z"/>
+            <path fill="#fff" fill-opacity=".07" d="M-60 740 C 200 700 480 690 780 720 L780 732 C 480 702 200 712 -60 752 Z"/>
+            <path class="h-band-a" fill-opacity=".85" d="M-60 800 C 200 780 480 790 780 776 L780 802 C 480 816 200 806 -60 826 Z"/>
+            <path d="M-60 792 C 200 772 480 782 780 768" fill="none" stroke="#A3E635" stroke-opacity=".6" stroke-width="2.5" stroke-dasharray="14 12" stroke-linecap="round"/>
+            <g fill="#365314"><ellipse cx="120" cy="748" rx="44" ry="20"/><ellipse cx="160" cy="742" rx="28" ry="16"/><ellipse cx="660" cy="738" rx="46" ry="22"/></g>
+            <g fill="#1F3A0C"><ellipse cx="130" cy="760" rx="50" ry="8"/><ellipse cx="660" cy="754" rx="50" ry="8"/></g>
+            <use href="#house" transform="translate(40 736) scale(0.8)"/>
+            <use href="#house" transform="translate(520 740) scale(0.9)"/>
+          </svg>
+        </div>
+        <!-- Layer 5: semak & bunga -->
+        <div class="auth__layer" data-auth-layer>
+          <svg data-depth="0.03" viewBox="0 0 720 900" preserveAspectRatio="xMidYMax slice">
+            <path fill="url(#aFront)" d="M-60 830 C 60 790 160 810 260 780 C 360 750 440 800 540 790 C 640 780 700 760 780 790 L780 900 L-60 900 Z"/>
+            <g class="h-blade-a"><path d="M60 840 C 65 760 80 720 100 690 C 102 740 98 790 88 845 Z"/><path d="M300 830 C 292 770 300 730 325 700 C 332 750 328 790 320 838 Z"/><path d="M520 820 C 530 760 550 725 580 700 C 570 750 555 790 542 826 Z"/><path d="M690 830 C 680 770 695 730 720 700 C 725 750 720 790 710 838 Z"/></g>
+            <g class="h-blade-b"><path d="M180 860 C 185 800 195 770 215 745 C 215 790 210 830 202 862 Z"/><path d="M430 850 C 420 800 430 770 450 745 C 455 790 450 825 445 855 Z"/><path d="M620 870 C 625 820 640 790 665 770 C 660 815 648 845 638 872 Z"/></g>
+            <g transform="translate(120 805) scale(1.1)"><g data-sway data-delay="1"><use href="#flower"/></g></g>
+            <g transform="translate(380 885) scale(0.9)"><g data-sway data-delay="3"><use href="#flower"/></g></g>
+            <g transform="translate(640 855)"><g data-sway data-delay="2"><use href="#flower"/></g></g>
+            <g fill="#D9F99D" opacity=".9" data-float="slow"><circle cx="165" cy="770" r="3"/><circle cx="190" cy="800" r="2"/><circle cx="410" cy="835" r="2.5"/><circle cx="600" cy="815" r="2"/><circle cx="680" cy="800" r="3"/></g>
+          </svg>
+        </div>
+        <div class="hero__particles"><i class="particle"></i><i class="particle"></i><i class="particle"></i><i class="particle"></i></div>
+      </div>
+
+      <span class="auth__pill auth__pill--1" data-float data-intro><span class="badge__dot"></span> Paket Gratis · Rp 0</span>
+      <span class="auth__pill auth__pill--2" data-float="slow" data-intro>⏱️ Toko siap dalam 15 menit</span>
+
+      <div class="auth__visual-content">
+        <a href="index.html" class="brand" data-intro><svg class="brand__mark" viewBox="0 0 40 40" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="18"/><path d="M13 16h14l-1.6 12.5a1.5 1.5 0 0 1-1.5 1.3h-7.8a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M16.5 16v-1.5a3.5 3.5 0 0 1 7 0V16"/></svg><span>TOKORA</span></a>
+        <div>
+          <h2 class="display-lg auth__headline" data-split="words" data-intro="title">Buka toko online gratis</h2>
+          <p class="auth__sub" data-intro>Buat akun, beri nama tokomu, dan mulai terima pesanan hari ini juga.</p>
+        </div>
+        <blockquote class="auth__quote" data-intro>
+          <div class="quote__stars">★★★★★</div>
+          <p class="quote__text">"Landing page untuk iklan jadi dalam sore hari. Pembeli checkout di halaman itu juga, tidak perlu pindah aplikasi."</p>
+          <div class="quote__who"><span class="avatar" style="background:var(--c-lime-300)">SR</span><div>Sari Rahma<small>Glow Skincare, Bandung</small></div></div>
+        </blockquote>
+      </div>
+    </aside>
+
+    <!-- ============ PANEL FORM ============ -->
+    <section class="auth__panel">
+      <div class="blobs" aria-hidden="true">
+        <div class="blob" style="width:620px;height:620px;right:-260px;top:-260px" data-breathe></div>
+        <div class="blob blob--ring" style="width:220px;height:220px;left:-60px;bottom:12%" data-float="slow"></div>
+      </div>
+      <div class="auth__card" data-auth-card>
+        <div class="auth__top" data-intro>
+          <a href="index.html" class="brand"><svg class="brand__mark" viewBox="0 0 40 40" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="18"/><path d="M13 16h14l-1.6 12.5a1.5 1.5 0 0 1-1.5 1.3h-7.8a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M16.5 16v-1.5a3.5 3.5 0 0 1 7 0V16"/></svg><span>TOKORA</span></a>
+          <a href="index.html" class="link-arrow" style="margin-left:auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(180deg)"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Kembali ke situs</a>
+        </div>
+        <div data-intro>
+          <span class="eyebrow">Daftar</span>
+          <h1 class="auth__title">Buat akun seller</h1>
+          <p class="auth__lead" data-reg-lead>Dua langkah singkat: buat akun, lalu siapkan tokomu.</p>
+        </div>
+
+        <div class="steps-ind" data-steps data-intro>
+          <span class="steps-ind__item is-active"><span class="steps-ind__num">1</span> Akun</span>
+          <span class="steps-ind__line"></span>
+          <span class="steps-ind__item"><span class="steps-ind__num">2</span> <span data-step2-label>Toko</span></span>
+        </div>
+
+        <div class="social" data-intro>
+          <button type="button" class="social__btn" data-magnetic="0.15"><svg viewBox="0 0 24 24"><path fill="#EA4335" d="M12 10.2v3.9h5.5c-.2 1.3-1.5 3.8-5.5 3.8-3.3 0-6-2.7-6-6.1s2.7-6.1 6-6.1c1.9 0 3.1.8 3.9 1.5l2.6-2.5C16.9 3.1 14.7 2 12 2 6.5 2 2 6.5 2 12s4.5 10 10 10c5.8 0 9.6-4.1 9.6-9.8 0-.7-.1-1.2-.2-1.7H12z"/></svg> Google</button>
+          <button type="button" class="social__btn" data-magnetic="0.15"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg> Nomor HP</button>
+        </div>
+        <div class="divider-text" data-intro>atau dengan email</div>
+
+        <form class="auth__form" id="auth-form" data-auth-form="register" data-redirect="dashboard.html" novalidate>
+          <!-- STEP 1: akun -->
+          <div class="auth__step is-active" data-intro>
+            <div class="field">
+              <span class="field__label-auth" id="role-label">Daftar sebagai</span>
+              <div class="role-pick" role="radiogroup" aria-labelledby="role-label">
+                <label class="role-opt"><input type="radio" name="role" value="seller" checked><span><b>Seller</b><small>Saya punya produk untuk dijual</small></span></label>
+                <label class="role-opt"><input type="radio" name="role" value="mitra"><span><b>Mitra</b><small>Buat LP atau bantu CO, dapat komisi</small></span></label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="r-name">Nama lengkap</label>
+              <div class="input-wrap">
+                <input class="input" id="r-name" name="name" type="text" placeholder="Sari Rahma" autocomplete="name" required minlength="2">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              </div>
+              <span class="field__error">Masukkan nama kamu.</span>
+            </div>
+            <div class="field">
+              <label for="r-email">Email</label>
+              <div class="input-wrap">
+                <input class="input" id="r-email" name="email" type="email" placeholder="kamu@email.com" autocomplete="email" required>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+              </div>
+              <span class="field__error">Masukkan alamat email yang valid.</span>
+            </div>
+            <div class="field">
+              <label for="r-pass">Kata sandi</label>
+              <div class="input-wrap">
+                <input class="input" id="r-pass" name="password" type="password" placeholder="Minimal 8 karakter" autocomplete="new-password" minlength="8" required data-password>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+                <button type="button" class="eye" data-eye aria-label="Tampilkan kata sandi" aria-pressed="false">
+                  <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18M10.6 10.6A3 3 0 0 0 13.4 13.4M6.5 6.7C4 8.3 2 12 2 12s3.5 6 10 6c1.6 0 3-.3 4.2-.9M9.9 5.1C10.6 5 11.3 5 12 5c6.5 0 10 6 10 6s-.7 1.2-2 2.7"/></svg>
+                </button>
+              </div>
+              <div class="strength" data-strength-for="r-pass" data-level="0"><span></span><span></span><span></span><span></span></div>
+              <div class="strength__label"></div>
+              <span class="field__error">Kata sandi minimal 8 karakter.</span>
+            </div>
+            <div class="auth__actions">
+              <button type="button" class="btn btn--primary btn--lg" data-step-next data-magnetic>Lanjut <svg class="btn__icon btn__icon--arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            </div>
+          </div>
+
+          <!-- STEP 2: toko -->
+          <div class="auth__step">
+            <div class="role-group" data-role-group="seller">
+            <div class="field">
+              <label for="r-community">Nama toko <span class="opt">(bisa diubah nanti)</span></label>
+              <div class="input-wrap">
+                <input class="input" id="r-community" name="store" type="text" placeholder="Glow Skincare" required minlength="2">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"/><path d="M5 13v7h14v-7"/></svg>
+              </div>
+              <span class="field__error">Beri nama tokomu.</span>
+            </div>
+            <div class="auth__row">
+              <div class="field">
+                <label for="r-size">Kategori</label>
+                <select class="input" id="r-size" name="category"><option>Fashion</option><option>Makanan dan minuman</option><option>Kecantikan</option><option>Elektronik</option><option>Produk digital</option><option>Lainnya</option></select>
+              </div>
+              <div class="field">
+                <label for="r-role">Jualan saat ini lewat</label>
+                <select class="input" id="r-role" name="channel"><option>Belum jualan online</option><option>WhatsApp / media sosial</option><option>Marketplace lain</option><option>Website sendiri</option></select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="r-country">Kota asal pengiriman</label>
+              <div class="input-wrap">
+                <input class="input" id="r-country" name="city" type="text" placeholder="Bandung" autocomplete="address-level2">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              </div>
+            </div>
+            </div>
+            <div class="role-group" data-role-group="mitra" hidden>
+              <div class="field">
+                <label for="r-ptype">Saya ingin jadi</label>
+                <select class="input" id="r-ptype" name="ptype" disabled><option>Kreator landing page dan closer</option><option>Kreator landing page</option><option>Closer (bantu checkout)</option></select>
+              </div>
+              <div class="auth__row">
+                <div class="field">
+                  <label for="r-pchan">Kanal utama</label>
+                  <select class="input" id="r-pchan" name="pchannel" disabled><option>WhatsApp</option><option>Instagram</option><option>TikTok</option><option>Facebook</option><option>Lainnya</option></select>
+                </div>
+                <div class="field">
+                  <label for="r-pcity">Kota domisili</label>
+                  <input class="input" id="r-pcity" name="pcity" type="text" placeholder="Bandung" autocomplete="address-level2" disabled>
+                </div>
+              </div>
+              <p class="field__hint-auth">Setelah daftar, pilih produk dari Katalog Affiliate lalu buat landing page atau bantu pembeli checkout. Komisi cair setelah pesanan selesai.</p>
+            </div>
+            <div class="field">
+              <label class="check"><input type="checkbox" name="terms" required><span class="check__box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span>Saya setuju dengan <a href="#">Syarat</a> dan <a href="#">Kebijakan Privasi</a></span></label>
+              <span class="field__error">Setujui syarat untuk melanjutkan.</span>
+            </div>
+            <label class="check"><input type="checkbox" name="news" checked><span class="check__box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>Kirimi saya tips jualan dan kabar fitur baru</label>
+            <div class="auth__actions">
+              <button type="button" class="btn btn--outline btn--lg btn--icon" data-step-back aria-label="Kembali" style="width:60px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+              <button type="submit" class="btn btn--primary btn--lg" data-magnetic><span data-submit-label>Buat akun</span> <svg class="btn__icon btn__icon--arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            </div>
+          </div>
+        </form>
+
+        <p class="auth__switch" data-intro>Sudah punya akun? <a href="login.html">Masuk</a></p>
+
+        <div class="auth__success" aria-live="polite">
+          <div class="icon-circle icon-circle--sm" style="--size:72px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
+          <h2 class="display-sm">Selamat datang di Tokora!</h2>
+          <p class="text-2 small">Tokomu sedang disiapkan. Mengalihkan…</p>
+        </div>
+
+        <div class="auth__foot" data-intro><span>© 2026 Tokora</span><span><a href="#">Privasi</a> · <a href="#">Syarat</a> · <a href="styleguide.html">Style guide</a></span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="controls">
+    <button class="control control--theme" data-theme-toggle aria-label="Ganti tema terang / gelap" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg></button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/session.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

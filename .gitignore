@@ -1,0 +1,23 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Dependensi & build (untuk backend nanti)
+node_modules/
+dist/
+build/
+*.log
+
+# Rahasia — jangan pernah di-commit
+.env
+.env.*
+!.env.example
+
+# Konfigurasi lokal Claude Code (hanya launch.json yang dibagikan)
+.claude/*
+!.claude/launch.json
+landing/.claude/*
+!landing/.claude/launch.json
